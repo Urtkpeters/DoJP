@@ -1,0 +1,25 @@
+{
+  "levelName": "Welcome to Jagged Peak",
+  "levelCode": "level1",
+  "levelMusic": "level1",
+  "levelEntities":
+  {
+    "player": {"type": "player", "assetName": "player", "position": "playerStart", "movement": "player", "timing": "0", "bounty": "0"},
+    "floor": {"type": "floor", "assetName": "floor", "position": "floor", "movement": "floor", "timing": "0", "bounty": "0"},
+    "monster01": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftBackAndForth", "timing": "100", "bounty": "20"},
+    "monster02": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftBackAndForth", "timing": "110", "bounty": "20"},
+    "monster03": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftBackAndForth", "timing": "120", "bounty": "20"},
+    "monster04": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBox", "timing": "600", "bounty": "20"},
+    "monster05": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBox", "timing": "610", "bounty": "20"},
+    "monster06": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBox", "timing": "620", "bounty": "20"},
+    "monster07": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBox", "timing": "630", "bounty": "20"},
+    "monster08": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "1200", "bounty": "20"},
+    "monster09": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "1210", "bounty": "20"},
+    "monster10": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "1220", "bounty": "20"},
+    "monster11": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "1230", "bounty": "20"},
+    "monster12": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "1850", "bounty": "20"},
+    "monster13": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "1860", "bounty": "20"},
+    "monster14": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "1870", "bounty": "20"},
+    "monster15": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "1880", "bounty": "20"}
+  }
+}

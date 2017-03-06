@@ -1,0 +1,35 @@
+{
+  "levelName": "Enter the Shooter",
+  "levelCode": "level4",
+  "levelMusic": "level1",
+  "levelEntities":
+  {
+    "player": {"type": "player", "assetName": "player", "position": "playerStart", "movement": "player", "timing": "0", "bounty": "0"},
+    "floor": {"type": "floor", "assetName": "floor", "position": "floor", "movement": "floor", "timing": "0", "bounty": "0"},
+    "monster01": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightX", "timing": "100", "bounty": "20"},
+    "monster02": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightX", "timing": "110", "bounty": "20"},
+    "monster03": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightX", "timing": "120", "bounty": "20"},
+    "monster04": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightX", "timing": "130", "bounty": "20"},
+    "monster05": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightX", "timing": "140", "bounty": "20"},
+    "monster06": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightX", "timing": "150", "bounty": "20"},
+    "monster07": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightX", "timing": "160", "bounty": "20"},
+    "monster08": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "900", "bounty": "20"},
+    "monster09": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "910", "bounty": "20"},
+    "monster10": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "920", "bounty": "20"},
+    "monster11": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "930", "bounty": "20"},
+    "monster12": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "940", "bounty": "20"},
+    "monster13": {"type": "monster", "assetName": "lowBug", "position": "left", "movement": "leftSimpleZigZag", "timing": "950", "bounty": "20"},
+    "monster14": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBox", "timing": "1600", "bounty": "20"},
+    "monster15": {"type": "monster", "assetName": "mediumBug", "position": "right", "movement": "rightBox", "timing": "1610", "bounty": "30"},
+    "monster16": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBox", "timing": "1620", "bounty": "20"},
+    "monster17": {"type": "monster", "assetName": "mediumBug", "position": "right", "movement": "rightBox", "timing": "1630", "bounty": "30"},
+    "monster18": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBox", "timing": "1640", "bounty": "20"},
+    "monster19": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "2200", "bounty": "20"},
+    "monster20": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "2210", "bounty": "20"},
+    "monster21": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "2220", "bounty": "20"},
+    "monster22": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "2230", "bounty": "20"},
+    "monster23": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "2240", "bounty": "20"},
+    "monster24": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "2250", "bounty": "20"},
+    "monster25": {"type": "monster", "assetName": "lowBug", "position": "right", "movement": "rightBackAndForth", "timing": "2260", "bounty": "20"}
+  }
+}
