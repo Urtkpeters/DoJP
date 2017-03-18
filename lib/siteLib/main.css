@@ -1,0 +1,205 @@
+body
+{
+    background-color: #1A1A1D;
+    color: #FFFFFF;
+}
+
+.gameDiv
+{
+    background-color: #191970;
+    width: 800px;
+    height: 600px;
+    margin: 150px auto;
+}
+
+canvas
+{
+    border: 1px solid #18121E;
+    background-color: #000000;
+    width: 800px;
+    height: 600px;
+}
+
+.navigationDiv
+{
+    width: 100%;
+    text-align: right;
+}
+
+.loginDiv
+{
+    background-color: #1A1A1D;
+    width: 100px;
+    height: 26px;
+    border-radius: 5px;
+    margin-right: 30px;
+    margin-left: auto;
+    text-align: center;
+    border: solid 1px #950740;
+    padding-top: 5px;
+}
+
+.loginDiv:hover
+{
+    background-color: #6F2232;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.loginDiv:active
+{
+    background-color: #6F2232;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.loginDiv label
+{
+    font-family: Arial, serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+.loginDiv label:hover
+{
+    cursor: pointer;
+}
+
+.loginDiv label:active
+{
+    cursor: pointer;
+}
+
+.lightboxShell
+{
+    display: none;
+}
+
+.lightboxContainer
+{
+    color: #000000;
+    width: 300px;
+    text-align: center !important;
+    font-family: Arial, serif;
+    border-radius: 10px;
+    background-color: #1A1A1D;
+    vertical-align: top;
+    margin: 18% auto;
+}
+
+.lightboxContainer label
+{
+    color: #FFFFFF;
+    font-size: 25px;
+    margin: 0;
+}
+
+.loginLightbox
+{
+    height: 260px;
+}
+
+.registerLightbox
+{
+    height: 320px;
+}
+
+.inputDiv
+{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.inputDiv input
+{
+    background-color: #1A1A1D;
+    color: #FFFFFF;
+    border: solid 1px #950740;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.submitButton
+{
+    background-color: #1A1A1D;
+    width: 60px;
+    height: 20px;
+    border-radius: 5px;
+    text-align: center;
+    border: solid 1px #950740;
+    padding-top: 5px;
+    margin-top: 30px;
+}
+
+#loginSubmitButton, #registerSubmitButton
+{
+    margin-left: auto;
+    float: right;
+}
+
+#loginRegisterButton, #registerLoginButton
+{
+    margin-left: 0;
+    float: left;
+}
+
+.submitButton:hover
+{
+    background-color: #6F2232;
+    cursor: pointer;
+}
+
+.submitButton:active
+{
+    background-color: #6F2232;
+    cursor: pointer;
+}
+
+.submitButton label
+{
+    font-size: 10px;
+    vertical-align: middle;
+}
+
+.submitButton label:hover
+{
+    cursor: pointer;
+}
+
+.submitButton label:active
+{
+    cursor: pointer;
+}
+
+.fancybox-close-small::after
+{
+    background-color: #1A1A1D;
+    color: #FFFFFF;
+}
+
+.fancybox-close-small:hover:after
+{
+    background-color: #1A1A1D;
+    color: #950740;
+}
+
+.fancybox-close-small:focus
+{
+    outline: none;
+}
+
+.errorDiv
+{
+    font-size: 12px;
+    color: #FF0000;
+    padding-top: 15px;
+}
+
+.messages
+{
+    float: left;
+    width: 500px;
+    text-align: center;
+    margin-left: 37%;
+    margin-top: 130px;
+}
