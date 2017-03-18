@@ -13,6 +13,9 @@
 
             $objResponse['entityData'] = $this->getEntityData($db);
             $objResponse['levelData'] = $this->getLevelData($db);
+            $objResponse['UIData'] = $this->getUIData($db);
+            $objResponse['soundData'] = $this->getSoundData($db);
+            $objResponse['musicData'] = $this->getMusicData($db);
 
             if(count($objResponse['entityData']) > 0 && count($objResponse['levelData']) > 0)
             {
@@ -32,8 +35,9 @@
                 select levelHeaderId, 
                   levelName,
                   levelCode,
-                  levelMusic
-                from LevelHeader
+                  fil.FileName
+                from LevelHeader lh
+                  join files fil on fil.fileid = lh.Music_fileid
             ';
 
             foreach($db->query($qryGetLevelHeaders) as $row)
@@ -44,7 +48,7 @@
                 $objGameData[$levelCode] = array();
                 $objGameData[$levelCode]['levelName'] = $row['levelName'];
                 $objGameData[$levelCode]['levelCode'] = $levelCode;
-                $objGameData[$levelCode]['levelMusic'] = $row['levelMusic'];
+                $objGameData[$levelCode]['levelMusic'] = $row['FileName'];
                 $objGameData[$levelCode]['levelEntities'] = array();
 
                 $qryGetLevelEntities = '
@@ -106,6 +110,142 @@
             }
 
             return $objLevelData;
+        }
+
+        function getSoundData($db)
+        {
+            $objSoundData = array();
+
+            $qryGetSounds =
+            "
+                select FilePath,
+                  FileType,
+                  FileName,
+                  volume
+                from Files
+                where FileType = 'sound';
+            ";
+
+            foreach($db->query($qryGetSounds) as $row)
+            {
+                $objSoundData[$row['FileName']] = array();
+
+                $objSoundData[$row['FileName']]['FilePath'] = $row['FilePath'];
+                $objSoundData[$row['FileName']]['FileType'] = $row['FileType'];
+                $objSoundData[$row['FileName']]['FileName'] = $row['FileName'];
+                $objSoundData[$row['FileName']]['volume'] = $row['volume'];
+            }
+
+            return $objSoundData;
+        }
+
+        function getMusicData($db)
+        {
+            $objMusicData = array();
+
+            $qryGetMusic =
+                "
+                select FilePath,
+                  FileType,
+                  FileName,
+                  volume
+                from Files
+                where FileType = 'music';
+            ";
+
+            foreach($db->query($qryGetMusic) as $row)
+            {
+                $objMusicData[$row['FileName']] = array();
+
+                $objMusicData[$row['FileName']]['FilePath'] = $row['FilePath'];
+                $objMusicData[$row['FileName']]['FileType'] = $row['FileType'];
+                $objMusicData[$row['FileName']]['FileName'] = $row['FileName'];
+                $objMusicData[$row['FileName']]['volume'] = $row['volume'];
+            }
+
+            return $objMusicData;
+        }
+
+        function getUIData($db)
+        {
+            $objUIData = array();
+
+            $qryGetUI =
+            "
+                select FilePath,
+                  FileType,
+                  FileName
+                from Files
+                where FileType = 'UI';
+            ";
+
+            foreach($db->query($qryGetUI) as $row)
+            {
+                $objUIData[$row['FileName']] = array();
+
+                $objUIData[$row['FileName']]['FilePath'] = $row['FilePath'];
+                $objUIData[$row['FileName']]['FileType'] = $row['FileType'];
+                $objUIData[$row['FileName']]['FileName'] = $row['FileName'];
+            }
+
+            return $objUIData;
+        }
+
+        function getSettingValues()
+        {
+            $objResponse = array
+            (
+                'blnSuccess' => false,
+                'strMessage' => 'Error retrieving settings.'
+            );
+
+            $strSessionId = $_GET['sessionId'];
+            require 'databaseHandler.php';
+
+            $qryGetSettingValues =
+            "
+                select SettingCode,
+                    SettingValue
+                from Sessions ses
+                    join Settings sts on sts.UserId = ses.UserId
+                where ses.sessionId = 
+            " . $strSessionId;
+
+            foreach($db->query($qryGetSettingValues) as $row)
+            {
+                $objResponse[$row['SettingCode']] = $row['SettingValue'];
+                $objResponse['blnSuccess'] = true;
+                $objResponse['strMessage'] = 'Settings successfully retrieved.';
+            }
+
+            return $objResponse;
+        }
+
+        function setSettingValue()
+        {
+            $intSessionId = (int)$_GET['sessionId'];
+            $strSettingCode = $_GET['settingCode'];
+            $blnSettingValue = $_GET['settingValue'] === 'true' ? true : false;
+            require 'databaseHandler.php';
+
+            $qryInsertUser = $db->prepare(
+            "
+              update Settings sts
+                join Sessions ses on ses.userId = sts.userId
+              set sts.SettingValue = :settingValue
+              where ses.SessionId = :sessionId
+                and sts.SettingCode = :settingCode
+            ");
+
+            $qryInsertUser->execute(array(':settingValue' => $blnSettingValue, ':sessionId' => $intSessionId, ':settingCode' => $strSettingCode));
+
+            $objResponse = array
+            (
+                'blnSuccess' => true,
+                'strMessage' => 'Success pushing settings.'
+            );
+
+            return $objResponse;
         }
     }
 

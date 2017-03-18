@@ -23,11 +23,22 @@
             $objRequestResponse = $clsLoginHandler->register();
         }
     }
-    else if($strRequest == 'getGameData')
+    else if($strRequest == 'getGameData' || $strRequest == 'getSettingValues' || $strRequest == 'setSettingValue')
     {
         require 'gameHandler.php';
 
-        $objRequestResponse = $clsGameHandler->getGameData();
+        if($strRequest == 'getGameData')
+        {
+            $objRequestResponse = $clsGameHandler->getGameData();
+        }
+        else if($strRequest == 'getSettingValues')
+        {
+            $objRequestResponse = $clsGameHandler->getSettingValues();
+        }
+        else if($strRequest == 'setSettingValue')
+        {
+            $objRequestResponse = $clsGameHandler->setSettingValue();
+        }
     }
 
     echo json_encode($objRequestResponse);

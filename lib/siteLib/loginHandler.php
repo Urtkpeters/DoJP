@@ -18,7 +18,8 @@
             require 'databaseHandler.php';
 
             $qryCheckLogin = '
-              select username,
+              select userId, 
+                username,
                 verified
               from Users
               where username = \'' . $strUsername . '\' 
@@ -43,7 +44,9 @@
             {
                 $intSessionID = rand(0 , 999999999);
 
-                setcookie( "SCfDoJP", $intSessionID, time()+7200, "/", "odinary.net", 0);
+                $strDomain = $_SERVER['HTTP_HOST'];
+
+                setcookie( "SCfDoJP", $intSessionID, time()+7200, "/", $strDomain, 0);
 
                 $stmt = $db->prepare('
                   insert into Sessions (sessionId, sessionActive, timeStamp, userId) 
@@ -135,7 +138,8 @@
             require 'databaseHandler.php';
 
             $qryUserExists = '
-              select username
+              select username,
+                emailAddress
               from Users
               where username = \'' . $strUsername . '\' 
                 or emailAddress = \'' . $strEmailAddress . '\';';
@@ -160,40 +164,51 @@
                 $strPassword = hash('sha512', $strPassword);
                 $objResponse['strMessage'] = 'User successfully registered. Please verify your email address before logging in.';
 
-                $qryInsertUser = $db->prepare('
+                $qryInsertUser = $db->prepare(
+                "
                   insert into Users (username, emailAddress, password, verified, verificationCode)
-                  values (:username, :emailAddress, :password, 0, :verificationCode)');
+                  values (:username, :emailAddress, :password, 0, :verificationCode);
+                  set @userId = LAST_INSERT_ID();
+                  insert into Settings (SettingCode, SettingValue, UserId)
+                  values ('EnableSound', 1, @userId);
+                  insert into Settings (SettingCode, SettingValue, UserId)
+                  values ('EnableMusic', 1, @userId);
+                ");
 
                 $qryInsertUser->execute(array(':username' => $strUsername, ':emailAddress' => $strEmailAddress, ':password' => $strPassword, ':verificationCode' => $intVerificationCode));
 
-                $strEmailMessage = '
-                    <html>
-                        <body>
-                            <p>Hello ' . $strUsername . ',</p>
-                            <p style="margin-left: 25px;">
-                                Please visit the link below to verify your recently created account.<br />
-                                <a href="http://odinary.net/verifyEmail.php?emailAddress=' . $strEmailAddress . '&verificationCode=' . $intVerificationCode . '">Verify here</a>
-                            </p>
-                            <p style="margin-left: 25px;">
-                                Sincerely,<br />
-                                Odinary.net
-                            </p>
-                        </body>
-                    </html>
-                ';
+                // This is here in case I am running this locally. I don't have a means of sending out mail so it just makes everything crash.
+                if($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != 'DoJP.com')
+                {
+                    $strEmailMessage = '
+                        <html>
+                            <body>
+                                <p>Hello ' . $strUsername . ',</p>
+                                <p style="margin-left: 25px;">
+                                    Please visit the link below to verify your recently created account.<br />
+                                    <a href="http://odinary.net/lib/siteLib/verifyEmail.php?emailAddress=' . $strEmailAddress . '&verificationCode=' . $intVerificationCode . '">Verify here</a>
+                                </p>
+                                <p style="margin-left: 25px;">
+                                    Sincerely,<br />
+                                    Odinary.net
+                                </p>
+                            </body>
+                        </html>
+                    ';
 
-                $strHeaders = 'Content-type: text/html; charset=iso-8859-1' . '\r\n';
-                $strHeaders .= 'To: ' . $strUsername . ' <' . $strEmailAddress . '>' . '\r\n';
-                $strHeaders .= 'From: Odinary <noreply@odinary.net>';
+                    $strHeaders = 'Content-type: text/html; charset=iso-8859-1' . '\r\n';
+                    $strHeaders .= 'To: ' . $strUsername . ' <' . $strEmailAddress . '>' . '\r\n';
+                    $strHeaders .= 'From: Odinary <noreply@odinary.net>';
 
-                mail
-                (
-                    $strEmailAddress,
-                    'Odinary - Verification Email',
-                    $strEmailMessage,
-                    $strHeaders,
-                    '-f noreply@odinary.net'
-                );
+                    mail
+                    (
+                        $strEmailAddress,
+                        'Odinary - Verification Email',
+                        $strEmailMessage,
+                        $strHeaders,
+                        '-f noreply@odinary.net'
+                    );
+                }
             }
 
             return $objResponse;
