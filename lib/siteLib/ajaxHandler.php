@@ -23,8 +23,9 @@
             $objRequestResponse = $clsLoginHandler->register();
         }
     }
-    else if($strRequest == 'getGameData' || $strRequest == 'getSettingValues' || $strRequest == 'setSettingValue')
+    else if($strRequest == 'getGameData' || $strRequest == 'getSettingValues' || $strRequest == 'setSettingValue' || $strRequest == 'submitScore' || $strRequest == 'saveGame' || $strRequest == 'loadGame')
     {
+
         require 'gameHandler.php';
 
         if($strRequest == 'getGameData')
@@ -38,6 +39,18 @@
         else if($strRequest == 'setSettingValue')
         {
             $objRequestResponse = $clsGameHandler->setSettingValue();
+        }
+        else if($strRequest == 'submitScore')
+        {
+            $objRequestResponse = $clsGameHandler->submitScore();
+        }
+        else if($strRequest == 'saveGame')
+        {
+            $objRequestResponse = $clsGameHandler->saveGame();
+        }
+        else if($strRequest == 'loadGame')
+        {
+            $objRequestResponse = $clsGameHandler->loadGame();
         }
     }
 
