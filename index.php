@@ -15,22 +15,37 @@
     </head>
     <body>
         <div id="navigationDiv" class="navigationDiv">
-            <div id="messages" class="messages"></div>
-            <div id="loginDiv" class="loginDiv">
-                <?php
-                    if($blnLoggedInDB)
-                    {
-                        echo '<label>LOGOUT</label>';
-                    }
-                    else
-                    {
-                        echo '<label>LOGIN</label>';
-                    }
-                ?>
+            <div id="logoDiv" class="logoDiv">
+                <img src="media/site/logo2.png" />
+            </div>
+            <div id="topButtonsDiv" class="topButtonsDiv">
+                <div id="contactButton" class="topButton">
+                    <label>CONTACT</label>
+                </div>
+                <div id="loginDiv" class="topButton">
+                    <?php
+                        if($blnLoggedInDB)
+                        {
+                            echo '<label>LOGOUT</label>';
+                        }
+                        else
+                        {
+                            echo '<label>LOGIN</label>';
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="mainNavigation">
+                <div id="gameNav" class="navLink"><p>DoJP</p></div>
+                <div id="leaderboardNav" class="navLink"><p>Leaderboard</p></div>
             </div>
         </div>
+        <div id="messages" class="messages"></div>
         <div id="gameDiv" class="gameDiv">
             <canvas id="gameCanvas" class="gameCanvas"></canvas>
+        </div>
+        <div id="madeDiv" class="madeDiv">
+            <label>Curious how it was made? Click here to find out.</label>
         </div>
         <div id="lightboxShell" class="lightboxShell">
             <div id="loginLightbox" class="lightboxContainer">
@@ -71,6 +86,16 @@
                     <label>SUBMIT</label>
                 </div>
             </div>
+            <div id="contactLightBox" class="lightboxContainer">
+                <p>If you have any problems with the site or game please send an email to: <br /><br /><a href="mailto:kpeters@jaggedpeak.com">kpeters@jaggedpeak.com</a></p>
+            </div>
+            <div id="madeLightbox" class="madeLightbox">
+                <p>This game was written entirely in Javascript and HTML5 Canvas. The artwork was all created on a web based application called Piskel and the sound effects were all gathered off of FreeSound.</p>
+                <p class="imgP"><a href="http://www.piskel.com/"><img src="media/site/PiskelLogo.png" /></a></p>
+                <p class="imgP"><a href="http://www.freesound.org/"><img src="media/site/FreeSoundLogo.png" /></a></p>
+                <p>To see a blow-by-blow on how this project was created please see my GitHub link below.</p>
+                <p class="imgP"><a href="https://github.com/Urtkpeters/DoJP/"><img src="media/site/GitHubLogo2.png" /></a></p>
+            </div>
         </div>
         <script>
             var blnLoggedIn = <?php echo $blnLoggedInDB ? 'true' : 'false'; ?>;
@@ -84,7 +109,23 @@
                 else
                 {
                     $.fancybox.open({src: '#loginLightbox'});
+                    $('.fancybox-slide').click(function(){$.fancybox.close();});
+                    $('#loginLightbox').click(function(event){event.stopPropagation();})
                 }
+            });
+
+            $('#contactButton').click(function()
+            {
+                $.fancybox.open({src: '#contactLightBox'});
+                $('.fancybox-slide').click(function(){$.fancybox.close();});
+                $('#contactLightBox').click(function(event){event.stopPropagation();})
+            });
+
+            $('#madeDiv').click(function()
+            {
+                $.fancybox.open({src: '#madeLightbox'});
+                $('.fancybox-slide').click(function(){$.fancybox.close();});
+                $('#madeLightbox').click(function(event){event.stopPropagation();})
             });
         </script>
     </body>
