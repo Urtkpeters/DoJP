@@ -1,0 +1,54 @@
+.gameDiv
+{
+    background-color: #191970;
+    width: 800px;
+    height: 600px;
+    margin: 150px auto;
+}
+
+.gameCanvas
+{
+    border: solid 2px #000000;
+}
+
+.madeDiv
+{
+    width: 315px;
+    color: #444444;
+    margin: 150px auto 0 auto;
+}
+
+.madeDiv:hover
+{
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.madeDiv label:hover
+{
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.madeLightbox
+{
+    color: #FFFFFF;
+    width: 600px;
+    font-family: Arial, serif;
+    border-radius: 10px;
+    background-color: #1A1A1D;
+    vertical-align: top;
+    margin: 18% auto;
+}
+
+.madeLightbox img
+{
+    width: 100px;
+}
+
+.imgP
+{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

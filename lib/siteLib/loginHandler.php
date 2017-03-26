@@ -247,6 +247,62 @@
 
             return $blnEmailVerified;
         }
+
+        function setAccountValue()
+        {
+            $strSessionId = $_GET['sessionId'];
+            $strAccountCode = $_GET['accountCode'];
+            $strAccountValue = $_GET['accountValue'];
+
+            if($strAccountCode == 'password')
+            {
+                echo $strAccountValue;
+                $strAccountValue = hash('sha512', $strAccountValue);
+                echo $strAccountValue;
+            }
+
+            require 'databaseHandler.php';
+
+            $qrySetValue = '';
+
+            if($strAccountCode == 'username')
+            {
+                $qrySetValue = $db->prepare('
+                  update Users usr
+                    join Sessions ses on ses.UserId = usr.UserId
+                  set username = :accountValue
+                  where ses.sessionId = :sessionId
+                    and ses.sessionActive = 1');
+            }
+            else if($strAccountCode == 'emailAddress')
+            {
+                $qrySetValue = $db->prepare('
+                  update Users usr
+                    join Sessions ses on ses.UserId = usr.UserId
+                  set emailAddress = :accountValue
+                  where ses.sessionId = :sessionId
+                    and ses.sessionActive = 1');
+            }
+            else if($strAccountCode = 'password')
+            {
+                $qrySetValue = $db->prepare('
+                  update Users usr
+                    join Sessions ses on ses.UserId = usr.UserId
+                  set password = :accountValue
+                  where ses.sessionId = :sessionId
+                    and ses.sessionActive = 1');
+            }
+
+            $qrySetValue->execute(array(':sessionId' => $strSessionId, ':accountValue' => $strAccountValue));
+
+            $objResponse = array
+            (
+                'blnSuccess' => true,
+                'strMessage' => 'Successfully changed.'
+            );
+
+            return $objResponse;
+        }
     }
 
     $clsLoginHandler = new loginHandler();

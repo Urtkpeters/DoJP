@@ -1,0 +1,173 @@
+.accountShell
+{
+    font-family: Arial, sans-serif;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.accountTitle
+{
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.accountInfo
+{
+    width: 60%;
+    background-color: #444444;
+    padding-top: 30px;
+    padding-bottom: 1px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+.sectionTitle
+{
+    width: 90%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    font-size: 32px;
+    text-align: center;
+}
+
+.fieldShell
+{
+    width: 90%;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.accountLabel
+{
+    float: left;
+    width: 140px;
+    margin-left: 14px;
+    margin-top: 5px;
+}
+.accountInput
+{
+    margin-left: 20px;
+    float: left;
+    width: 150px;
+    margin-top: 4px;
+}
+
+.changeButton
+{
+    margin-left: 25px;
+    float: left;
+    width: 80px;
+
+    background-color: #1A1A1D;
+    height: 26px;
+    border-radius: 5px;
+    text-align: center;
+    border: solid 1px #950740;
+    padding-top: 3px;
+}
+
+.changeButton:hover
+{
+    background-color: #6F2232;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.changeButton:active
+{
+    background-color: #6F2232;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.changeButton label
+{
+    font-family: Arial, serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+.changeButton label:hover
+{
+    cursor: pointer;
+}
+
+.changeButton label:active
+{
+    cursor: pointer;
+}
+
+.gameInfo
+{
+    width: 60%;
+    background-color: #444444;
+    padding-top: 30px;
+    padding-bottom: 1px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+.gameInfoLabel
+{
+    width: 90%;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.settingsInfo
+{
+    width: 60%;
+    background-color: #444444;
+    padding-top: 30px;
+    padding-bottom: 1px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+.setting
+{
+    width: 90%;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.settingLabel
+{
+    float: left;
+    width: 140px;
+    margin-left: 140px;
+}
+.settingInput
+{
+    float: left;
+    width: 20px;
+}
+
+.errorLabel
+{
+    text-align: center;
+    color: red;
+    width: 90%;
+}
+
+.noDisplay
+{
+    display: none;
+}

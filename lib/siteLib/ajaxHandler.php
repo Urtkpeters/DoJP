@@ -6,7 +6,7 @@
         'strMessage' => 'Error processing request.'
     );
 
-    if($strRequest == 'login' || $strRequest == 'logout' || $strRequest == 'register')
+    if($strRequest == 'login' || $strRequest == 'logout' || $strRequest == 'register' || $strRequest == 'setAccountValue')
     {
         require 'loginHandler.php';
 
@@ -21,6 +21,10 @@
         else if($strRequest == 'register')
         {
             $objRequestResponse = $clsLoginHandler->register();
+        }
+        else if($strRequest == 'setAccountValue')
+        {
+            $objRequestResponse = $clsLoginHandler->setAccountValue();
         }
     }
     else if($strRequest == 'getGameData' || $strRequest == 'getSettingValues' || $strRequest == 'setSettingValue' || $strRequest == 'submitScore' || $strRequest == 'saveGame' || $strRequest == 'loadGame')

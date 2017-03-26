@@ -1,0 +1,53 @@
+.leaderboard
+{
+    font-family: Arial, sans-serif;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.leaderboardTitle
+{
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.leaderboardTable
+{
+    text-align: center;
+    width: 800px;
+}
+
+.headerRow
+{
+    background-color: #cd0745;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.leaderRow
+{
+    background-color: #444444;
+    height: 40px;
+}
+
+.rankColumn
+{
+    width: 50px;
+}
+
+.userColumn
+{
+    width: 200px;
+}
+
+.scoreColumn
+{
+    width: 200px;
+}
+
+.levelColumn
+{
+    width: 50px
+}

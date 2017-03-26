@@ -5,19 +5,6 @@ body
     margin: 0;
 }
 
-.gameDiv
-{
-    background-color: #191970;
-    width: 800px;
-    height: 600px;
-    margin: 150px auto;
-}
-
-.gameCanvas
-{
-    border: solid 2px #000000;
-}
-
 canvas
 {
     border: 1px solid #18121E;
@@ -99,6 +86,16 @@ canvas
     background-color: #950740;
     text-align: left;
     margin-top: 77px;
+}
+
+.mainNavigation a
+{
+    color: #FFFFFF;
+}
+
+.mainNavigation a:visited
+{
+    color: #FFFFFF;
 }
 
 .navLink
@@ -279,47 +276,11 @@ canvas
     width: 500px;
     text-align: center;
     margin-left: 37%;
-    margin-top: 130px;
+    margin-top: 80px;
+    margin-bottom: 20px;
 }
 
-.madeDiv
+.pageContents
 {
-    width: 315px;
-    color: #444444;
-    margin: 150px auto;
-}
-
-.madeDiv:hover
-{
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
-.madeDiv label:hover
-{
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
-.madeLightbox
-{
-    color: #FFFFFF;
-    width: 600px;
-    font-family: Arial, serif;
-    border-radius: 10px;
-    background-color: #1A1A1D;
-    vertical-align: top;
-    margin: 18% auto;
-}
-
-.madeLightbox img
-{
-    width: 100px;
-}
-
-.imgP
-{
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    width: 100%;
 }

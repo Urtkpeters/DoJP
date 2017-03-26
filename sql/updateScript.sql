@@ -634,4 +634,12 @@ insert into levelEntities (levelHeaderId, type, position, movement, timing, enti
   (@levelHeaderId, 'todayBug', 'left','leftX', 6800, 24),
   (@levelHeaderId, 'todayBug', 'left','leftX', 6810, 24),
   (@levelHeaderId, 'todayBug', 'left','leftX', 6820, 24);
-insert into files (FilePath, FileType, FileName, volume, TicksPerFrame) values ('media/ui/JaggedPeakLogo.png', 'ui', 'jaggedPeakLogo', NULL, NULL)
+insert into files (FilePath, FileType, FileName, volume, TicksPerFrame) values ('media/ui/JaggedPeakLogo.png', 'ui', 'jaggedPeakLogo', NULL, NULL);
+alter table levelHeader
+add column levelNumber int not null;
+update levelHeader
+set levelNumber = right(levelCode,1)
+where levelHeaderId in ('level0','level1','level2','level3','level4','level5','level6','level7','level8','level9');
+update levelHeader
+set levelNumber = right(levelCode,2)
+where levelHeaderId in ('level10','level11','level12','level13','level14','level15','level16','level17','level18','level19','level20');
