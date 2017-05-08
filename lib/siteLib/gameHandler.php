@@ -37,6 +37,11 @@
                 select levelHeaderId, 
                   levelName,
                   levelCode,
+                  MultiplierTier1,
+                  MultiplierTier2,
+                  MultiplierTier3,
+                  MultiplierTier4,
+                  MultiplierTier5,
                   fil.FileName
                 from LevelHeader lh
                   join files fil on fil.fileid = lh.Music_fileid
@@ -51,6 +56,11 @@
                 $objGameData[$levelCode]['levelName'] = $row['levelName'];
                 $objGameData[$levelCode]['levelCode'] = $levelCode;
                 $objGameData[$levelCode]['levelMusic'] = $row['FileName'];
+                $objGameData[$levelCode]['MultiplierTier1'] = $row['MultiplierTier1'];
+                $objGameData[$levelCode]['MultiplierTier2'] = $row['MultiplierTier2'];
+                $objGameData[$levelCode]['MultiplierTier3'] = $row['MultiplierTier3'];
+                $objGameData[$levelCode]['MultiplierTier4'] = $row['MultiplierTier4'];
+                $objGameData[$levelCode]['MultiplierTier5'] = $row['MultiplierTier5'];
                 $objGameData[$levelCode]['levelEntities'] = array();
 
                 $qryGetLevelEntities = '
@@ -416,8 +426,8 @@
         {
             $objResponse = array
             (
-                'blnSuccess' => true,
-                'strMessage' => 'Success loading game.'
+                'blnSuccess' => false,
+                'strMessage' => 'Failed loading game.'
             );
 
             $intSessionId = (int)$_GET['sessionId'];

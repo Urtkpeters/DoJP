@@ -15,7 +15,7 @@
 {
     width: 315px;
     color: #444444;
-    margin: 150px auto 0 auto;
+    margin: -115px auto 100px auto;
 }
 
 .madeDiv:hover
@@ -36,7 +36,7 @@
     width: 600px;
     font-family: Arial, serif;
     border-radius: 10px;
-    background-color: #1A1A1D;
+    background-color: #1A1A1D !important;
     vertical-align: top;
     margin: 18% auto;
 }

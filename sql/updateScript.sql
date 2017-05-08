@@ -643,3 +643,190 @@ where levelHeaderId in ('level0','level1','level2','level3','level4','level5','l
 update levelHeader
 set levelNumber = right(levelCode,2)
 where levelHeaderId in ('level10','level11','level12','level13','level14','level15','level16','level17','level18','level19','level20');
+update levelentities set type = 'monster' where type in ('lowBug','mediumBug','highBug','todayBug','tombstoneBug');
+update Files set volume = 1 where FileName = 'energyBar';
+update files set FilePath = 'media/sounds/level2.mp3' where FileName = 'level2';
+insert into files (FilePath, FileType, FileName, volume, TicksPerFrame)
+  values ('media/sounds/level4.mp3','music','level4',0.30,NULL);
+insert into files (FilePath, FileType, FileName, volume, TicksPerFrame)
+  values ('media/sounds/level5.mp3','music','level5',0.30,NULL);
+update levelheader set Music_FileID = 100 where levelCode = 'level4';
+update levelheader set Music_FileID = 101 where levelCode = 'level5';
+update levelheader set Music_FileID = 21 where levelCode = 'level6';
+update levelheader set Music_FileID = 22 where levelCode = 'level7';
+update levelheader set Music_FileID = 23 where levelCode = 'level8';
+update levelheader set Music_FileID = 100 where levelCode = 'level9';
+update levelheader set Music_FileID = 101 where levelCode = 'level10';
+update levelheader set Music_FileID = 21 where levelCode = 'level11';
+update levelheader set Music_FileID = 22 where levelCode = 'level12';
+update levelheader set Music_FileID = 23 where levelCode = 'level13';
+update levelheader set Music_FileID = 100 where levelCode = 'level14';
+update levelheader set Music_FileID = 101 where levelCode = 'level15';
+update levelheader set Music_FileID = 21 where levelCode = 'level16';
+update levelheader set Music_FileID = 22 where levelCode = 'level17';
+update levelheader set Music_FileID = 23 where levelCode = 'level18';
+update levelheader set Music_FileID = 100 where levelCode = 'level19';
+update levelheader set Music_FileID = 101 where levelCode = 'level20';
+update levelheader set Music_FileID = 21 where levelCode = 'level26';
+alter table levelheader
+  add column MultiplierTier1 int not null,
+  add column MultiplierTier2 int not null,
+  add column MultiplierTier3 int not null,
+  add column MultiplierTier4 int not null,
+  add column MultiplierTier5 int not null;
+update levelheader
+set MultiplierTier1 = 3000,
+    MultiplierTier2 = 4000,
+    MultiplierTier3 = 5000,
+    MultiplierTier4 = 6000,
+    MultiplierTier5 = 7000
+where levelCode = 'level0';
+update levelheader
+set MultiplierTier1 = 2750,
+    MultiplierTier2 = 3250,
+    MultiplierTier3 = 3750,
+    MultiplierTier4 = 4500,
+    MultiplierTier5 = 5000
+where levelCode = 'level1';
+update levelheader
+set MultiplierTier1 = 2750,
+    MultiplierTier2 = 3250,
+    MultiplierTier3 = 4000,
+    MultiplierTier4 = 4750,
+    MultiplierTier5 = 5500
+where levelCode = 'level2';
+update levelheader
+set MultiplierTier1 = 3750,
+    MultiplierTier2 = 4250,
+    MultiplierTier3 = 4750,
+    MultiplierTier4 = 5500,
+    MultiplierTier5 = 6250
+where levelCode = 'level3';
+update levelheader
+set MultiplierTier1 = 3250,
+    MultiplierTier2 = 3750,
+    MultiplierTier3 = 4500,
+    MultiplierTier4 = 5250,
+    MultiplierTier5 = 6000
+where levelCode = 'level4';
+update levelheader
+set MultiplierTier1 = 5250,
+    MultiplierTier2 = 5750,
+    MultiplierTier3 = 6250,
+    MultiplierTier4 = 7000,
+    MultiplierTier5 = 7750
+where levelCode = 'level5';
+update levelheader
+set MultiplierTier1 = 3500,
+    MultiplierTier2 = 4000,
+    MultiplierTier3 = 4500,
+    MultiplierTier4 = 5250,
+    MultiplierTier5 = 6000
+where levelCode = 'level6';
+update levelheader
+set MultiplierTier1 = 5750,
+    MultiplierTier2 = 6250,
+    MultiplierTier3 = 6750,
+    MultiplierTier4 = 7500,
+    MultiplierTier5 = 8250
+where levelCode = 'level7';
+update levelheader
+set MultiplierTier1 = 5750,
+    MultiplierTier2 = 6250,
+    MultiplierTier3 = 6750,
+    MultiplierTier4 = 7500,
+    MultiplierTier5 = 8250
+where levelCode = 'level8';
+update levelheader
+set MultiplierTier1 = 3750,
+    MultiplierTier2 = 4250,
+    MultiplierTier3 = 4750,
+    MultiplierTier4 = 5500,
+    MultiplierTier5 = 6250
+where levelCode = 'level9';
+update levelheader
+set MultiplierTier1 = 5500,
+    MultiplierTier2 = 6000,
+    MultiplierTier3 = 6500,
+    MultiplierTier4 = 7250,
+    MultiplierTier5 = 8000
+where levelCode = 'level10';
+update levelheader
+set MultiplierTier1 = 5750,
+    MultiplierTier2 = 6250,
+    MultiplierTier3 = 6750,
+    MultiplierTier4 = 7500,
+    MultiplierTier5 = 8250
+where levelCode = 'level11';
+update levelheader
+set MultiplierTier1 = 5500,
+    MultiplierTier2 = 6000,
+    MultiplierTier3 = 6500,
+    MultiplierTier4 = 7250,
+    MultiplierTier5 = 8000
+where levelCode = 'level12';
+update levelheader
+set MultiplierTier1 = 7250,
+    MultiplierTier2 = 7750,
+    MultiplierTier3 = 8250,
+    MultiplierTier4 = 9000,
+    MultiplierTier5 = 9750
+where levelCode = 'level13';
+update levelheader
+set MultiplierTier1 = 7250,
+    MultiplierTier2 = 7750,
+    MultiplierTier3 = 8250,
+    MultiplierTier4 = 9000,
+    MultiplierTier5 = 9750
+where levelCode = 'level14';
+update levelheader
+set MultiplierTier1 = 5750,
+    MultiplierTier2 = 6250,
+    MultiplierTier3 = 6750,
+    MultiplierTier4 = 7500,
+    MultiplierTier5 = 8250
+where levelCode = 'level15';
+update levelheader
+set MultiplierTier1 = 6500,
+    MultiplierTier2 = 7000,
+    MultiplierTier3 = 7500,
+    MultiplierTier4 = 8250,
+    MultiplierTier5 = 9000
+where levelCode = 'level16';
+update levelheader
+set MultiplierTier1 = 6750,
+    MultiplierTier2 = 7250,
+    MultiplierTier3 = 7750,
+    MultiplierTier4 = 8500,
+    MultiplierTier5 = 9250
+where levelCode = 'level17';
+update levelheader
+set MultiplierTier1 = 8000,
+    MultiplierTier2 = 8500,
+    MultiplierTier3 = 9000,
+    MultiplierTier4 = 9750,
+    MultiplierTier5 = 10500
+where levelCode = 'level18';
+update levelheader
+set MultiplierTier1 = 8500,
+    MultiplierTier2 = 9000,
+    MultiplierTier3 = 9500,
+    MultiplierTier4 = 10250,
+    MultiplierTier5 = 11000
+where levelCode = 'level19';
+update levelheader
+set MultiplierTier1 = 10000,
+    MultiplierTier2 = 11000,
+    MultiplierTier3 = 12000,
+    MultiplierTier4 = 13000,
+    MultiplierTier5 = 14000
+where levelCode = 'level20';
+update levelheader
+set MultiplierTier1 = 3000,
+    MultiplierTier2 = 4000,
+    MultiplierTier3 = 5000,
+    MultiplierTier4 = 6000,
+    MultiplierTier5 = 7000
+where levelCode = 'level26';
+update levelentities set type = 'monster' where type = 'tombstoneB';
+update levelentities set type = 'monster' where type = 'logBug';

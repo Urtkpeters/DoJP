@@ -68,6 +68,12 @@
                         }
                     ?>
                 </div>
+                <?php
+                    if($blnLoggedInDB)
+                    {
+                        echo '<a href="/account"><div id="accountButton" class="topButton"><label>ACCOUNT</label></div></a>';
+                    }
+                ?>
             </div>
             <div class="mainNavigation">
                 <a href="/dojp"><div id="gameNav" class="navLink"><p>DoJP</p></div></a>
@@ -120,7 +126,7 @@
                 </div>
             </div>
             <div id="contactLightBox" class="lightboxContainer">
-                <p>If you have any problems with the site or game please send an email to: <br /><br /><a href="mailto:kpeters@jaggedpeak.com">kpeters@jaggedpeak.com</a></p>
+                <p>If you have any problems with the site or game please send an email to: <br /><br /><a href="mailto:urtkpeters@gmail.com">kpeters@jaggedpeak.com</a></p>
             </div>
         </div>
         <script>
@@ -147,5 +153,8 @@
                 $('#contactLightBox').click(function(event){event.stopPropagation();})
             });
         </script>
+        <div id="footer" class="footer">
+            All assets were created and written by Kurt Peters for Odinary. For any inquiries please feel free to <a href="mailto:urtkpeters@gmail.com">contact me</a>.
+        </div>
     </body>
 </html>

@@ -46,19 +46,18 @@ canvas
     border: solid 1px #950740;
     padding-top: 5px;
     float: right;
+    color: #FFFFFF !important;
 }
 
 .topButton:hover
 {
     background-color: #6F2232;
-    color: #FFFFFF;
     cursor: pointer;
 }
 
 .topButton:active
 {
     background-color: #6F2232;
-    color: #FFFFFF;
     cursor: pointer;
 }
 
@@ -140,7 +139,7 @@ canvas
     text-align: center !important;
     font-family: Arial, serif;
     border-radius: 10px;
-    background-color: #1A1A1D;
+    background-color: #1A1A1D !important;
     vertical-align: top;
     margin: 18% auto;
 }
@@ -248,19 +247,19 @@ canvas
 
 .fancybox-close-small::after
 {
-    background-color: #1A1A1D;
-    color: #FFFFFF;
+    background-color: #1A1A1D !important;
+    color: #1A1A1D !important;
 }
 
 .fancybox-close-small:hover:after
 {
-    background-color: #1A1A1D;
-    color: #950740;
+    background-color: #1A1A1D !important;
+    color: #1A1A1D !important;
 }
 
 .fancybox-close-small:focus
 {
-    outline: none;
+    outline: none !important;
 }
 
 .errorDiv
@@ -283,4 +282,22 @@ canvas
 .pageContents
 {
     width: 100%;
+}
+
+.footer
+{
+    width: 50%;
+    margin: 220px auto 0 auto;
+    color: #363639;
+    text-align: center;
+}
+
+.footer a
+{
+    color: #363639;
+}
+
+.footer a:visited
+{
+    color: #363639;
 }
