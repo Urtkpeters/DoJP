@@ -10,7 +10,7 @@
 {
     font-size: 60px;
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 25px;
 }
 
 .accountInfo
@@ -22,10 +22,21 @@
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .sectionTitle
+{
+    width: 90%;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1px;
+    font-size: 32px;
+    text-align: center;
+}
+
+.gameInfoSectionTitle
 {
     width: 90%;
     height: 40px;
@@ -136,7 +147,7 @@
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
 }
 
 .setting
@@ -170,4 +181,16 @@
 .noDisplay
 {
     display: none;
+}
+
+.accountInfoFeedback
+{
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.settingFeedback
+{
+    margin-bottom: 15px;
+    text-align: center;
 }

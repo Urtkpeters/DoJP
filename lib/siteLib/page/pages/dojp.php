@@ -21,3 +21,4 @@
         $('#madeLightbox').click(function(event){event.stopPropagation();})
     });
 </script>
+<script data-main="game/config.js" src="js/require.js"></script>

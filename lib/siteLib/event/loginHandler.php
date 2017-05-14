@@ -1,0 +1,317 @@
+<?php
+
+require_once 'databaseHandler.php';
+
+class loginHandler extends databaseHandler
+{
+    function login()
+    {
+        $objResponse = array
+        (
+            'blnSuccess' => false,
+            'strMessage' => 'Error processing login request.'
+        );
+
+        $strUsername = $_GET['username'];
+        $strPassword = $_GET['password'];
+        $intUserId = 0;
+
+        $strPassword = hash('sha512', $strPassword);
+
+        $qryCheckLogin = '
+          select userId, 
+            username,
+            verified
+          from Users
+          where username = \'' . $strUsername . '\' 
+            and password = \'' . $strPassword . '\';';
+
+        foreach($this->db->query($qryCheckLogin) as $row)
+        {
+            if($row['verified'] == 1)
+            {
+                $objResponse['blnSuccess'] = true;
+                $objResponse['strMessage'] = 'You have been successfully logged in.';
+                $intUserId = $row['userId'];
+            }
+            else
+            {
+                $objResponse['strMessage'] = 'Your account was not verified. Please verify your account using the link sent to your email address.';
+            }
+
+        }
+
+        if($objResponse['blnSuccess'])
+        {
+            $intSessionID = rand(0 , 999999999);
+
+            $strDomain = $_SERVER['HTTP_HOST'];
+
+            setcookie( "SCfDoJP", $intSessionID, time()+7200, "/", $strDomain, 0);
+
+            $stmt = $this->db->prepare('
+              insert into Sessions (sessionId, sessionActive, timeStamp, userId) 
+              values (:sessionID, 1, date_add(now(),INTERVAL 2 hour), :userId)');
+
+            $stmt->execute(array(':sessionID' => $intSessionID, ':userId' => $intUserId));
+        }
+
+        return $objResponse;
+    }
+
+    function logout()
+    {
+        $objResponse = array
+        (
+            'blnSuccess' => false,
+            'strMessage' => 'Error processing logout request.'
+        );
+
+        if(isset($_COOKIE['SCfDoJP']))
+        {
+            $intSessionId = $_COOKIE["SCfDoJP"];
+
+            $qryCheckLoggedIn = $this->db->prepare('
+              update Sessions
+              set sessionActive = 0
+              where sessionId = :sessionId');
+
+            $qryCheckLoggedIn->execute(array(':sessionId' => $intSessionId));
+
+            // Both of these will not just deactivate the cookie but also remove from the browser upon next page load.
+            unset($_COOKIE['SCfDoJP']);
+            setcookie('SCfDoJP', '', time()-3600, '/');
+
+            $objResponse['blnSuccess'] = true;
+            $objResponse['strMessage'] = 'You have been successfully logged out.';
+        }
+
+        return $objResponse;
+    }
+
+    function checkSession()
+    {
+        $blnLoggedInDB = false;
+
+        if(isset($_COOKIE['SCfDoJP']))
+        {
+            $intSessionId = $_COOKIE["SCfDoJP"];
+
+            $qryCheckLoggedIn = '
+                select sessionId
+                from Sessions
+                where timeStamp > now()
+                  and sessionActive = 1
+                  and sessionId = ' . $intSessionId;
+
+            foreach($this->db->query($qryCheckLoggedIn) as $row)
+            {
+                if($row['sessionId'] != 0)
+                {
+                    $blnLoggedInDB = true;
+                }
+            }
+
+            if(!$blnLoggedInDB)
+            {
+                // Both of these will not just deactivate the cookie but also remove from the browser upon next page load.
+                unset($_COOKIE['SCfDoJP']);
+                setcookie('SCfDoJP', '', time()-3600, '/');
+            }
+        }
+
+        return $blnLoggedInDB;
+    }
+
+    function register($emailAddress, $username, $password)
+    {
+        $objResponse = array
+        (
+            'blnSuccess' => true,
+            'strMessage' => 'Error processing register request.'
+        );
+
+        $qryUserExists = '
+          select username,
+            emailAddress
+          from Users
+          where username = \'' . $username . '\' 
+            or emailAddress = \'' . $emailAddress . '\';';
+
+        foreach($this->db->query($qryUserExists) as $row)
+        {
+            if($row['emailAddress'] == $emailAddress)
+            {
+                $objResponse['blnSuccess'] = false;
+                $objResponse['strMessage'] = 'User with this email address already exists.';
+            }
+            else if($row['username'] == $username)
+            {
+                $objResponse['blnSuccess'] = false;
+                $objResponse['strMessage'] = 'Username already in use.';
+            }
+        }
+
+        if($objResponse['blnSuccess'])
+        {
+            $verificationCode = rand(0 , 999999999);
+            $password = hash('sha512', $password);
+            $objResponse['strMessage'] = 'User successfully registered. Please verify your email address before logging in.';
+
+            $qryInsertUser = $this->db->prepare(
+            "
+              insert into Users (username, emailAddress, password, verified, verificationCode)
+              values (:username, :emailAddress, :password, 0, :verificationCode);
+              set @userId = LAST_INSERT_ID();
+              insert into Settings (SettingCode, SettingValue, UserId)
+              values ('EnableSound', 1, @userId);
+              insert into Settings (SettingCode, SettingValue, UserId)
+              values ('EnableMusic', 1, @userId);
+            ");
+
+            $qryInsertUser->execute(array(':username' => $username, ':emailAddress' => $emailAddress, ':password' => $password, ':verificationCode' => $verificationCode));
+
+            // This is here in case I am running this locally. I don't have a means of sending out mail so it just makes everything crash.
+            if($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != 'DoJP.com')
+            {
+                $emailMessage = '
+                    <html>
+                        <body>
+                            <div style="background-color: #303033; width: 1000px; height: 107px;">
+                                <div style="width: 100%; height: 30px; text-align: left; background-color: #950740; float: left; margin-top: 77px;"></div>
+                                <div style="float: left; margin-top: -100px; margin-left: 291px;"><a href="http://odinary.net/"><img src="http://odinary.net/media/site/logo2.png" style="height: 100px; "></a></div>
+                            </div>
+                            <div style="margin-top: -20px; background-color: #1A1A1D; width: 1000px; height: 600px; color: #FFFFFF;">
+                                <p style="margin-bottom: 25px; margin-left: 300px; padding-top: 50px; font-size: 20px; font-weight: bold;">Hello '.$username.',</p>
+                                <p style="margin-left: 325px; padding-top: 25px;">Please visit the link below to verify your recently created account.</p>
+                                <p style="margin-left: 350px;"><a href="http://odinary.net/lib/siteLib/verifyEmail.php?emailAddress=' . $emailAddress . '&verificationCode=' . $verificationCode . '" style="color: #FFFFFF">Verify here</a></p>
+                                <p style="margin-left: 300px; margin-top: 75px;">Sincerely,</p>
+                                <p style="margin-left: 300px; font-weight: bold;">Odinary.net</p>
+                            </div>
+                        </body>
+                    </html>
+                ';
+
+                $headers = 'Content-type: text/html; charset=iso-8859-1' . '\r\n';
+                $headers .= 'To: ' . $username . ' <' . $emailAddress . '>' . '\r\n';
+                $headers .= 'From: Odinary <noreply@odinary.net>';
+
+                mail
+                (
+                    $emailAddress,
+                    'Odinary - Verification Email',
+                    $emailMessage,
+                    $headers,
+                    '-f noreply@odinary.net'
+                );
+            }
+        }
+
+        return $objResponse;
+    }
+
+    function verifyEmail()
+    {
+        $blnEmailVerified = false;
+
+        $strEmailAddress = $_GET['emailAddress'];
+        $strVerificationCode = $_GET['verificationCode'];
+
+        $qryVerification = '
+          select username
+          from Users
+          where verificationCode = \'' . $strVerificationCode . '\' 
+            and emailAddress = \'' . $strEmailAddress . '\';';
+
+        foreach($this->db->query($qryVerification) as $row)
+        {
+            if($row['username'] != '')
+            {
+                $blnEmailVerified = true;
+            }
+        }
+
+        if($blnEmailVerified)
+        {
+            $qrySetVerify = $this->db->prepare('
+              update Users
+              set verified = 1
+              where emailAddress = :emailAddress
+                and verificationCode = :verificationCode');
+
+            $qrySetVerify->execute(array(':emailAddress' => $strEmailAddress, ':verificationCode' => $strVerificationCode));
+        }
+
+        return $blnEmailVerified;
+    }
+
+    function setAccountValue($sessionId, $accountCode, $accountValue)
+    {
+        $qrySetValue = '';
+
+        if($accountCode == 'username')
+        {
+            $qrySetValue = $this->db->prepare('
+              update Users usr
+                join Sessions ses on ses.UserId = usr.UserId
+              set username = :accountValue
+              where ses.sessionId = :sessionId
+                and ses.sessionActive = 1');
+        }
+        else if($accountCode == 'emailAddress')
+        {
+            $qrySetValue = $this->db->prepare('
+              update Users usr
+                join Sessions ses on ses.UserId = usr.UserId
+              set emailAddress = :accountValue
+              where ses.sessionId = :sessionId
+                and ses.sessionActive = 1');
+        }
+        else if($accountCode = 'password')
+        {
+            $accountValue = hash('sha512', $accountValue);
+
+            $qrySetValue = $this->db->prepare('
+              update Users usr
+                join Sessions ses on ses.UserId = usr.UserId
+              set password = :accountValue
+              where ses.sessionId = :sessionId
+                and ses.sessionActive = 1');
+        }
+
+        $qrySetValue->execute(array(':sessionId' => $sessionId, ':accountValue' => $accountValue));
+
+        $objResponse = array
+        (
+            'blnSuccess' => true,
+            'strMessage' => 'Successfully changed.'
+        );
+
+        return $objResponse;
+    }
+
+    function getAccountInfo()
+    {
+        $intSessionId = $_COOKIE["SCfDoJP"];
+
+        $qryGetUserInfo = $this->db->prepare
+        ("
+            select usr.username,
+              usr.emailAddress,
+              lb.Score,
+              lh.levelNumber
+            from Sessions ses
+              join Users usr on usr.UserId = ses.UserId
+              left outer join Leaderboard lb on lb.UserId = ses.UserId
+              left outer join levelHeader lh on lh.levelHeaderId = lb.levelHeaderId
+            where ses.sessionId = " . $intSessionId . "
+            order by lb.Score desc
+            limit 1
+        ");
+
+        $qryGetUserInfo->execute();
+        return $qryGetUserInfo->fetchAll();
+    }
+}
+
+$clsLoginHandler = new loginHandler();

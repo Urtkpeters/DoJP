@@ -3,7 +3,7 @@
     background-color: #191970;
     width: 800px;
     height: 600px;
-    margin: 150px auto;
+    margin: 150px auto 0 auto;
 }
 
 .gameCanvas
@@ -15,7 +15,7 @@
 {
     width: 315px;
     color: #444444;
-    margin: -115px auto 100px auto;
+    margin: 40px auto 100px auto;
 }
 
 .madeDiv:hover

@@ -1,5 +1,7 @@
 <?php
-    class gameHandler
+    require_once 'databaseHandler.php';
+
+    class gameHandler extends databaseHandler
     {
         function getGameData()
         {
@@ -9,15 +11,13 @@
                 'strMessage' => 'Error getting game data.'
             );
 
-            require 'databaseHandler.php';
-
-            $objResponse['entityData'] = $this->getEntityData($db);
-            $objResponse['levelData'] = $this->getLevelData($db);
-            $objResponse['UIData'] = $this->getUIData($db);
-            $objResponse['SpriteImageData'] = $this->getSpriteImageData($db);
-            $objResponse['SpriteJSONData'] = $this->getSpriteJSONData($db);
-            $objResponse['soundData'] = $this->getSoundData($db);
-            $objResponse['musicData'] = $this->getMusicData($db);
+            $objResponse['entityData'] = $this->getEntityData();
+            $objResponse['levelData'] = $this->getLevelData();
+            $objResponse['UIData'] = $this->getUIData();
+            $objResponse['SpriteImageData'] = $this->getSpriteImageData();
+            $objResponse['SpriteJSONData'] = $this->getSpriteJSONData();
+            $objResponse['soundData'] = $this->getSoundData();
+            $objResponse['musicData'] = $this->getMusicData();
 
             if(count($objResponse['entityData']) > 0 && count($objResponse['levelData']) > 0)
             {
@@ -28,7 +28,7 @@
             return $objResponse;
         }
 
-        function getLevelData($db)
+        function getLevelData()
         {
             $objGameData = array();
 
@@ -44,10 +44,10 @@
                   MultiplierTier5,
                   fil.FileName
                 from LevelHeader lh
-                  join files fil on fil.fileid = lh.Music_fileid
+                  join Files fil on fil.fileid = lh.Music_fileid
             ';
 
-            foreach($db->query($qryGetLevelHeaders) as $row)
+            foreach($this->db->query($qryGetLevelHeaders) as $row)
             {
                 $levelHeaderId = $row['levelHeaderId'];
                 $levelCode = $row['levelCode'];
@@ -74,7 +74,7 @@
                     where levelHeaderId = ' . $levelHeaderId;
 
                 $intRowCounter = 0;
-                foreach($db->query($qryGetLevelEntities) as $row2)
+                foreach($this->db->query($qryGetLevelEntities) as $row2)
                 {
                     $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter] = array();
                     $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['type'] = $row2['type'];
@@ -90,7 +90,7 @@
             return $objGameData;
         }
 
-        function getEntityData($db)
+        function getEntityData()
         {
             $objLevelData = array();
 
@@ -107,7 +107,7 @@
                 from Entities
             ";
 
-            foreach($db->query($qryGetEntities) as $row)
+            foreach($this->db->query($qryGetEntities) as $row)
             {
                 $objLevelData[$row['entityName']] = array();
 
@@ -124,7 +124,7 @@
             return $objLevelData;
         }
 
-        function getSoundData($db)
+        function getSoundData()
         {
             $objSoundData = array();
 
@@ -138,7 +138,7 @@
                 where FileType = 'sound';
             ";
 
-            foreach($db->query($qryGetSounds) as $row)
+            foreach($this->db->query($qryGetSounds) as $row)
             {
                 $objSoundData[$row['FileName']] = array();
 
@@ -151,7 +151,7 @@
             return $objSoundData;
         }
 
-        function getMusicData($db)
+        function getMusicData()
         {
             $objMusicData = array();
 
@@ -165,7 +165,7 @@
                 where FileType = 'music';
             ";
 
-            foreach($db->query($qryGetMusic) as $row)
+            foreach($this->db->query($qryGetMusic) as $row)
             {
                 $objMusicData[$row['FileName']] = array();
 
@@ -178,7 +178,7 @@
             return $objMusicData;
         }
 
-        function getUIData($db)
+        function getUIData()
         {
             $objUIData = array();
 
@@ -191,7 +191,7 @@
                 where FileType = 'UI';
             ";
 
-            foreach($db->query($qryGetUI) as $row)
+            foreach($this->db->query($qryGetUI) as $row)
             {
                 $objUIData[$row['FileName']] = array();
 
@@ -203,7 +203,7 @@
             return $objUIData;
         }
 
-        function getSpriteImageData($db)
+        function getSpriteImageData()
         {
             $objSpriteImageData = array();
 
@@ -216,7 +216,7 @@
                 where FileType = 'SpriteImage'
             ";
 
-            foreach($db->query($qryGetSpriteImages) as $row)
+            foreach($this->db->query($qryGetSpriteImages) as $row)
             {
                 $objSpriteImageData[$row['FileName']] = array();
 
@@ -228,7 +228,7 @@
             return $objSpriteImageData;
         }
 
-        function getSpriteJSONData($db)
+        function getSpriteJSONData()
         {
             $objSpriteJSONData = array();
 
@@ -242,7 +242,7 @@
                 where FileType = 'SpriteJSON'
             ";
 
-            foreach($db->query($qryGetSpriteJSON) as $row)
+            foreach($this->db->query($qryGetSpriteJSON) as $row)
             {
                 $objSpriteJSONData[$row['FileName']] = array();
 
@@ -255,16 +255,13 @@
             return $objSpriteJSONData;
         }
 
-        function getSettingValues()
+        function getSettingValues($sessionId)
         {
             $objResponse = array
             (
                 'blnSuccess' => false,
                 'strMessage' => 'Error retrieving settings.'
             );
-
-            $strSessionId = $_GET['sessionId'];
-            require 'databaseHandler.php';
 
             $qryGetSettingValues =
             "
@@ -273,10 +270,9 @@
                 from Sessions ses
                     join Settings sts on sts.UserId = ses.UserId
                 where ses.sessionId = 
-            " . $strSessionId;
+            " . $sessionId;
 
-            foreach($db->query($qryGetSettingValues) as $row)
-            {
+            foreach ($this->db->query($qryGetSettingValues) as $row) {
                 $objResponse[$row['SettingCode']] = $row['SettingValue'];
                 $objResponse['blnSuccess'] = true;
                 $objResponse['strMessage'] = 'Settings successfully retrieved.';
@@ -285,15 +281,18 @@
             return $objResponse;
         }
 
-        function setSettingValue()
+        function setSettingValue($sessionId, $settingCode, $settingValue)
         {
-            $intSessionId = (int)$_GET['sessionId'];
-            $strSettingCode = $_GET['settingCode'];
-            $blnSettingValue = $_GET['settingValue'] === 'true' ? true : false;
+            if($settingValue == 'true')
+            {
+                $settingValue = true;
+            }
+            else
+            {
+                $settingValue = false;
+            }
 
-            require 'databaseHandler.php';
-
-            $qrySetSetting = $db->prepare(
+            $qrySetSetting = $this->db->prepare(
             "
               update Settings sts
                 join Sessions ses on ses.userId = sts.userId
@@ -302,7 +301,7 @@
                 and sts.SettingCode = :settingCode
             ");
 
-            $qrySetSetting->execute(array(':settingValue' => $blnSettingValue, ':sessionId' => $intSessionId, ':settingCode' => $strSettingCode));
+            $qrySetSetting->execute(array(':settingValue' => $settingValue, ':sessionId' => $sessionId, ':settingCode' => $settingCode));
 
             $objResponse = array
             (
@@ -313,81 +312,73 @@
             return $objResponse;
         }
 
-        function submitScore()
+        function submitScore($sessionId, $score, $level)
         {
-            $intSessionId = (int)$_GET['sessionId'];
-            $intScore = (int)$_GET['score'];
-            $strLevel = 'level' . $_GET['level'];
-
-            require 'databaseHandler.php';
-
-            $qrySubmitScore = $db->prepare(
-            "
-                set @LevelHeaderId = 0;
-                set @UserId = 0;
-                set @AnoymousUserId = 0;
-                
-                select LevelHeaderId
-                into @LevelHeaderId
-                from LevelHeader
-                where levelCode = :level;
-                
-                select UserId
-                into @UserId
-                from Sessions
-                where SessionId = :sessionId;
-                
-                select UserId
-                into @AnoymousUserId
-                from Users
-                where Username = 'Anonymous';
-                
-                insert into Leaderboard (LevelHeaderId, UserId, Score)
-                  select @LevelHeaderId, 
-                    if(@UserId > 0, @UserId, @AnoymousUserId),
-                    :score;
-            ");
-
-            $qrySubmitScore->execute(array(':level' => $strLevel, ':sessionId' => $intSessionId, ':score' => $intScore));
-
             $objResponse = array
             (
-                'blnSuccess' => true,
-                'strMessage' => 'Success submitting score.'
+                'blnSuccess' => false,
+                'strMessage' => 'Error submitting score.'
             );
+
+            if(isset($sessionId) && isset($score) && isset($level))
+            {
+                $level = 'level' . $_GET['level'];
+
+                $qrySubmitScore = $this->db->prepare(
+                "
+                    set @LevelHeaderId = 0;
+                    set @UserId = 0;
+                    set @AnoymousUserId = 0;
+                    
+                    select LevelHeaderId
+                    into @LevelHeaderId
+                    from LevelHeader
+                    where levelCode = :level;
+                    
+                    select UserId
+                    into @UserId
+                    from Sessions
+                    where SessionId = :sessionId;
+                    
+                    select UserId
+                    into @AnoymousUserId
+                    from Users
+                    where Username = 'Anonymous';
+                    
+                    insert into Leaderboard (LevelHeaderId, UserId, Score)
+                      select @LevelHeaderId, 
+                        if(@UserId > 0, @UserId, @AnoymousUserId),
+                        :score;
+                ");
+
+                $qrySubmitScore->execute(array(':level' => $level, ':sessionId' => $sessionId, ':score' => $score));
+
+                $objResponse = array
+                (
+                    'blnSuccess' => true,
+                    'strMessage' => 'Success submitting score.'
+                );
+            }
 
             return $objResponse;
         }
 
-        function saveGame()
+        function saveGame($sessionId, $level, $earnings, $score, $pto, $windate, $nespresso,
+                          $activeide, $notepad, $notepadplusplus, $far, $eclipse, $dreamweaver, $muleStudio, $intelliJ, $netbeans, $purchasedPTO)
         {
-            $intSessionId = (int)$_GET['sessionId'];
-            $intLevel = (int)$_GET['level'];
-            $intEarnings = (int)$_GET['earnings'];
-            $intScore = (int)$_GET['score'];
-            $intPTO = (int)$_GET['pto'];
-            $intWindate = (int)$_GET['windate'];
-            $intNespresso = (int)$_GET['nespresso'];
-            $strActiveIDE = $_GET['activeide'];
-            $intNotepad = (int)$_GET['notepad'];
-            $intNotepadPlusPlus = (int)$_GET['notepadplusplus'];
-            $intFar = (int)$_GET['far'];
-            $intEclipse = (int)$_GET['eclipse'];
-            $intDreamweaver = (int)$_GET['dreamweaver'];
-            $intMuleStudio = (int)$_GET['muleStudio'];
-            $intIntelliJ = (int)$_GET['intelliJ'];
-            $intNetbeans = (int)$_GET['netbeans'];
-
-            require 'databaseHandler.php';
-
-            $qrySaveGame = $db->prepare(
+            $qryDeleteSaves = $this->db->prepare(
             "
                 delete sg
                 from SavedGames sg
                   join Sessions ses on ses.UserId = sg.UserId
                 where sessionId = :sessionId;
-                
-                insert into SavedGames (UserId, NextLevel, Earnings, Score, PTO, Windate, Nespresso, ActiveIDE, Notepad, NotepadPlusPlus, Far, Eclipse, Dreamweaver, MuleStudio, IntelliJ, Netbeans)
+            ");
+
+            $qryDeleteSaves->execute(array(':sessionId' => $sessionId));
+
+            $qrySaveGame = $this->db->prepare(
+            "
+                insert into SavedGames (UserId, NextLevel, Earnings, Score, PTO, Windate, Nespresso, ActiveIDE, Notepad, NotepadPlusPlus, Far, Eclipse, Dreamweaver, MuleStudio, IntelliJ, Netbeans, purchasedPTO)
                   select UserId,
                     :level,
                     :earnings,
@@ -403,15 +394,16 @@
                     :dreamweaver,
                     :muleStudio,
                     :intelliJ,
-                    :netbeans
+                    :netbeans,
+                    :purchasedPTO
                   from Sessions
                   where SessionId = :sessionId
                     and SessionActive = 1;
             ");
 
-            $qrySaveGame->execute(array(':level' => $intLevel, ':sessionId' => $intSessionId, ':score' => $intScore, ':earnings' => $intEarnings, ':pto' => $intPTO, ':windate' => $intWindate,
-                ':nespresso' => $intNespresso, ':activeIDE' => $strActiveIDE, ':notepad' => $intNotepad, ':notepadplusplus' => $intNotepadPlusPlus, ':far' => $intFar, ':eclipse' => $intEclipse, ':dreamweaver' => $intDreamweaver,
-                ':muleStudio' => $intMuleStudio, ':intelliJ' => $intIntelliJ, ':netbeans' => $intNetbeans));
+            $qrySaveGame->execute(array(':level' => $level, ':sessionId' => $sessionId, ':score' => $score, ':earnings' => $earnings, ':pto' => $pto, ':windate' => $windate,
+                ':nespresso' => $nespresso, ':activeIDE' => $activeide, ':notepad' => $notepad, ':notepadplusplus' => $notepadplusplus, ':far' => $far, ':eclipse' => $eclipse, ':dreamweaver' => $dreamweaver,
+                ':muleStudio' => $muleStudio, ':intelliJ' => $intelliJ, ':netbeans' => $netbeans, ':purchasedPTO' => $purchasedPTO));
 
             $objResponse = array
             (
@@ -422,16 +414,13 @@
             return $objResponse;
         }
 
-        function loadGame()
+        function loadGame($sessionId)
         {
             $objResponse = array
             (
                 'blnSuccess' => false,
                 'strMessage' => 'Failed loading game.'
             );
-
-            $intSessionId = (int)$_GET['sessionId'];
-            require 'databaseHandler.php';
 
             $qryGetSavedGame =
             "
@@ -449,17 +438,18 @@
                   Dreamweaver,
                   MuleStudio,
                   IntelliJ,
-                  Netbeans
+                  Netbeans,
+                  purchasedPTO
                 from SavedGames sg
                   join Sessions ses on ses.UserId = sg.UserId
                 where ses.SessionId = 
-            " . $intSessionId . ";
+            " . $sessionId . ";
                 delete sg
                 from SavedGames sg
                   join Sessions ses on ses.UserId = sg.UserId
-                where sessionId = ". $intSessionId;
+                where sessionId = ". $sessionId;
 
-            foreach($db->query($qryGetSavedGame) as $row)
+            foreach($this->db->query($qryGetSavedGame) as $row)
             {
                 $objResponse['level'] = $row['NextLevel'];
                 $objResponse['earnings'] = $row['Earnings'];
@@ -476,6 +466,7 @@
                 $objResponse['muleStudio'] = $row['MuleStudio'];
                 $objResponse['intelliJ'] = $row['IntelliJ'];
                 $objResponse['netbeans'] = $row['Netbeans'];
+                $objResponse['purchasedPTO'] = $row['purchasedPTO'];
 
                 $objResponse['blnSuccess'] = true;
                 $objResponse['strMessage'] = 'Game successfully loaded.';
@@ -483,7 +474,31 @@
 
             return $objResponse;
         }
+
+        function getLeaderboardData()
+        {
+            $this->db->exec("set @rank = 0;");
+
+            $qryLeaderboard = $this->db->prepare
+            ('
+                select *,
+                  @rank:=@rank+1 as rank
+                from
+                (
+                  select usr.Username,
+                    lb.Score,
+                    lh.levelNumber
+                  from Leaderboard lb
+                    join Users usr on usr.UserId = lb.UserId
+                    join LevelHeader lh on lh.LevelHeaderId = lb.LevelHeaderId
+                  order by Score desc, levelNumber desc
+                  limit 25
+                ) as sub;
+            ');
+
+            $qryLeaderboard->execute();
+            return $qryLeaderboard->fetchAll();
+        }
     }
 
     $clsGameHandler = new gameHandler();
-?>

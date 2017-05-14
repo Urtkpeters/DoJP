@@ -1,4 +1,9 @@
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([\w-]+)/?$ index.php?requestTarget=$1 [QSA,L]
+
+RewriteRule ^(.*/)?css(/.*)?$ lib/siteLib/page/css$2 [L]
+RewriteRule ^(.*/)?js(/.*)?$ lib/siteLib/page/js$2 [L]
+RewriteRule ^(.*/)?media(/.*)?$ media$2 [L]
+RewriteRule ^(.*/)?game(/.*)?$ lib/gameLib$2 [L]
+
+RewriteCond %{REQUEST_URI} !\.(jpg|png|gif|css|js)$
+RewriteRule ^(.*/)?(page|event)(/.*)?$ index.php?requestTarget=$2$3 [QSA,L]

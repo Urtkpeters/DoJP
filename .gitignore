@@ -2,3 +2,11 @@
 *.xml
 DoJP.iml
 test.php
+versions/v1.0.2.txt
+versions/CurrentChanges.txt
+misc/id_rsa.pub
+versions/v1.0.1.txt
+*.txt
+misc/test2.php
+misc/test_1.php
+misc/testers.html
