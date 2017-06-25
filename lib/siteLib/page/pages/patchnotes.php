@@ -1,6 +1,110 @@
 <div class="patchnotesTitle">Patch Notes</div>
 <div class="versionDiv">
-    <h1 class="topVersion">1.0.3</h1>
+    <h1 class="topVersion">1.0.4</h1>
+    <p>______________________________________________________________</p>
+    <h2>Level Changes</h2>
+    <h3>Tombstone Bug</h3>
+    <label>HP: 2500 -> 3500</label>
+    <h3>Level Timing</h3>
+    <table class="timingTable">
+        <tbody>
+            <tr>
+                <td>LevelNumber</td><td>x 1.4</td><td>x 1.2</td><td>x 1.0</td><td>x 0.8</td><td>x 0.6</td>
+            </tr>
+            <tr>
+                <td>Level 1</td><td>< 2300</td><td>2300 - 2750</td><td>2750 - 3200</td><td>3200 - 3800</td><td>3800 ></td>
+            </tr>
+            <tr>
+                <td>Level 2</td><td>< 2700</td><td>2700 - 3150</td><td>3150 - 3600</td><td>3600 - 4200</td><td>4200 ></td>
+            </tr>
+            <tr>
+                <td>Level 3</td><td>< 2700</td><td>2700 - 3150</td><td>3150 - 3600</td><td>3600 - 4200</td><td>4200 ></td>
+            </tr>
+            <tr>
+                <td>Level 4</td><td>< 2600</td><td>2600 - 3050</td><td>3050 - 3500</td><td>3500 - 4100</td><td>4100 ></td>
+            </tr>
+            <tr>
+                <td>Level 5</td><td>< 3400</td><td>3400 - 3850</td><td>3850 - 4300</td><td>4300 - 4900</td><td>4900 ></td>
+            </tr>
+            <tr>
+                <td>Level 6</td><td>< 3000</td><td>3000 - 3450</td><td>3450 - 3900</td><td>3900 - 4500</td><td>4500 ></td>
+            </tr>
+            <tr>
+                <td>Level 7</td><td>< 3000</td><td>3000 - 3450</td><td>3450 - 3900</td><td>3900 - 4500</td><td>4500 ></td>
+            </tr>
+            <tr>
+                <td>Level 8</td><td>< 2400</td><td>2400 - 2850</td><td>2850 - 3300</td><td>3300 - 3900</td><td>3900 ></td>
+            </tr>
+            <tr>
+                <td>Level 9</td><td>< 2700</td><td>2700 - 3150</td><td>3150 - 3600</td><td>3600 - 4200</td><td>4200 ></td>
+            </tr>
+            <tr>
+                <td>Level 10</td><td>< 2600</td><td>2600 - 3050</td><td>3050 - 3500</td><td>3500 - 4100</td><td>4100 ></td>
+            </tr>
+            <tr>
+                <td>Level 11</td><td>< 2800</td><td>2800 - 3250</td><td>3250 - 3700</td><td>3700 - 4300</td><td>4300 ></td>
+            </tr>
+            <tr>
+                <td>Level 12</td><td>< 2600</td><td>2600 - 3050</td><td>3050 - 3500</td><td>3500 - 4100</td><td>4100 ></td>
+            </tr>
+            <tr>
+                <td>Level 13</td><td>< 4000</td><td>4000 - 4450</td><td>4450 - 4900</td><td>4900 - 5500</td><td>5500 ></td>
+            </tr>
+            <tr>
+                <td>Level 14</td><td>< 4200</td><td>4200 - 4650</td><td>4650 - 5100</td><td>5100 - 5700</td><td>5700 ></td>
+            </tr>
+            <tr>
+                <td>Level 15</td><td>< 2500</td><td>2500 - 2950</td><td>2950 - 3400</td><td>3400 - 3900</td><td>3900 ></td>
+            </tr>
+            <tr>
+                <td>Level 16</td><td>< 2700</td><td>2700 - 3150</td><td>3150 - 3600</td><td>3600 - 4200</td><td>4200 ></td>
+            </tr>
+            <tr>
+                <td>Level 17</td><td>< 4500</td><td>4500 - 4950</td><td>4950 - 5400</td><td>5400 - 6000</td><td>6000 ></td>
+            </tr>
+            <tr>
+                <td>Level 18</td><td>< 4300</td><td>4300 - 4750</td><td>4750 - 5200</td><td>5200 - 5600</td><td>5600 ></td>
+            </tr>
+            <tr>
+                <td>Level 19</td><td>< 6200</td><td>6200 - 6800</td><td>6800 - 7400</td><td>7400 - 8400</td><td>8400 ></td>
+            </tr>
+            <tr>
+                <td>Level 20</td><td>< 7000</td><td>7000 - 8000</td><td>8000 - 9000</td><td>9000 - 12000</td><td>12000 ></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="endLine">______________________________________________________________</p>
+    <h2>Player Changes</h2>
+    <h3>PTO</h3>
+    <label>Incrementing Cost: 20 -> 10</label>
+    <h3>Mule Studio</h3>
+    <label>Bullets now pierce</label><br />
+    <label>Starting Damage: 12 -> 4</label><br />
+    <label>Incrementing Damage: 12 -> 3</label><br />
+    <label>Starting Speed: 100 -> 75</label><br />
+    <label>Starting Cost: 1200 -> 1800</label><br />
+    <label>Base Upgrade Cost: 240 -> 360</label><br />
+    <label>Incrementing Cost: 120 -> 180</label>
+    <h3>Eclipse</h3>
+    <label>Starting Cost: 2000 -> 1800</label><br />
+    <label>Base Upgrade Cost: 400 -> 360</label><br />
+    <label>Incrementing Cost: 200 -> 180</label>
+    <h3>IntelliJ</h3>
+    <label>Starting Cost: 2000 -> 1800</label><br />
+    <label>Base Upgrade Cost: 400 -> 360</label><br />
+    <label>Incrementing Cost: 200 -> 180</label>
+    <h3>Netbeans</h3>
+    <label>Bullets now pierce</label><br />
+    <label>Starting Damage: 8 -> 4</label><br />
+    <label>Incrementing Damage: 4 -> 2</label><br />
+    <label>Incrementing Cooldown: 1 -> 0</label>
+    <h3>Far</h3>
+    <label>Incrementing Damage: 6 -> 8</label><br />
+    <label>Starting Cost: 800 -> 1000</label><br />
+    <label>Base Upgrade Cost: 160 -> 200</label><br />
+    <label>Incrementing Cost: 80 -> 100</label>
+    <p class="endLine">______________________________________________________________</p>
+    <h1>1.0.3</h1>
     <p>______________________________________________________________</p>
     <h2>Level Changes</h2>
     <h3>Level 2</h3>
