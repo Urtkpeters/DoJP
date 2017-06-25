@@ -1,0 +1,56 @@
+.patchnotesTitle
+{
+    font-size: 50px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.versionDiv
+{
+    width: 500px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.versionDiv p
+{
+    text-align: center;
+}
+
+.versionDiv h1
+{
+    font-size: 60px;
+    margin: 160px 0 0 0;
+    text-align: center;
+    color: #950740;
+}
+
+.versionDiv h2
+{
+    text-decoration: underline;
+    text-align: center;
+}
+
+.versionDiv h3
+{
+    margin: 25px 0 0 15px;
+}
+
+.versionDiv label
+{
+    margin-left: 35px;
+}
+
+.endLine
+{
+    margin-top: 50px;
+}
+
+.topVersion
+{
+    margin-top: 40px !important;
+}

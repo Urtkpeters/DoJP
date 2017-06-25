@@ -5,14 +5,6 @@ body
     margin: 0;
 }
 
-canvas
-{
-    border: 1px solid #18121E;
-    background-color: #000000;
-    width: 800px;
-    height: 600px;
-}
-
 .navigationDiv
 {
     width: 100%;
@@ -20,6 +12,68 @@ canvas
     background-color: #303033;
     height: 107px;
     padding-top: 5px;
+}
+
+.dojpNav
+{
+    position: relative;
+    display: inline-block;
+    margin-left: 60px;
+    font-size: 16px;
+}
+
+.arcNav
+{
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.navDropdown
+{
+    display: none;
+    position: absolute;
+    background-color: #950740;
+    width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 30px;
+    text-align: center;
+    border-right: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+}
+
+.navDropdown a
+{
+    display: block;
+    text-decoration: none;
+}
+
+.navDropdown:hover
+{
+    display: block;
+}
+
+.gameNavLink:hover + .navDropdown
+{
+    display: block;
+}
+
+.arcNavLink:hover + .navDropdown
+{
+    display: block;
+}
+
+.subNavLink
+{
+    height: 30px;
+    padding-top: 7px;
+}
+
+.subNavLink:hover
+{
+    background-color: #cd0745;
+    cursor: pointer;
 }
 
 .logoDiv
@@ -85,6 +139,9 @@ canvas
     background-color: #950740;
     text-align: left;
     margin-top: 77px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 0;
 }
 
 .mainNavigation a
@@ -100,13 +157,11 @@ canvas
 .navLink
 {
     float: left;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    text-align: center;
     width: 150px;
     height: 30px;
     border-right: 1px solid #FFFFFF;
     vertical-align: top;
+    text-align: center;
 }
 
 .navLink p
@@ -118,7 +173,6 @@ canvas
 #gameNav
 {
     border-left: 1px solid #FFFFFF;
-    margin-left: 60px;
 }
 
 .navLink:hover

@@ -303,7 +303,7 @@ class loginHandler extends databaseHandler
             from Sessions ses
               join Users usr on usr.UserId = ses.UserId
               left outer join Leaderboard lb on lb.UserId = ses.UserId
-              left outer join levelHeader lh on lh.levelHeaderId = lb.levelHeaderId
+              left outer join LevelHeader lh on lh.levelHeaderId = lb.levelHeaderId
             where ses.sessionId = " . $intSessionId . "
             order by lb.Score desc
             limit 1

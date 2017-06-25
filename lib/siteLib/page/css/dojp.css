@@ -9,6 +9,9 @@
 .gameCanvas
 {
     border: solid 2px #000000;
+    background-color: #000000;
+    width: 800px;
+    height: 600px;
 }
 
 .madeDiv

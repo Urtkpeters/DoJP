@@ -47,8 +47,28 @@
                 ?>
             </div>
             <div class="mainNavigation">
-                <a href="/page/dojp"><div id="gameNav" class="navLink"><p>DoJP</p></div></a>
-                <a href="/page/leaderboard"><div id="leaderboardNav" class="navLink"><p>Leaderboard</p></div></a>
+                <div class="dojpNav">
+                    <a class="gameNavLink" href="/page/dojp">
+                        <div id="gameNav" class="navLink">
+                            <p>DoJP</p>
+                        </div>
+                    </a>
+                    <div class="navDropdown">
+                        <a href="/page/leaderboard">
+                                <div class="subNavLink">Leaderboard</div>
+                        </a>
+                        <a href="/page/patchnotes">
+                            <div class="subNavLink">Patch Notes</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="arcNav">
+                    <a class="arcNavLink" href="/page/arc">
+                        <div id="arcNav2" class="navLink">
+                            <p>ARC</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
         <div id="messages" class="messages"></div>

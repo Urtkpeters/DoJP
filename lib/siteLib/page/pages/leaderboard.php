@@ -19,7 +19,7 @@
                         '
                         <tr class="leaderRow">
                             <td>' . $row['rank'] . '</td>
-                            <td>' . $row['levelNumber'] . '</td>
+                            <td>' . $row['LevelNumber'] . '</td>
                             <td>' . $row['Username'] . '</td>
                             <td>' . $row['Score'] . '</td>
                         </tr>

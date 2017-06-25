@@ -34,14 +34,13 @@
 
             $qryGetLevelHeaders =
             '
-                select levelHeaderId, 
-                  levelName,
-                  levelCode,
+                select LevelHeaderId, 
+                  LevelName,
+                  LevelCode,
                   MultiplierTier1,
                   MultiplierTier2,
                   MultiplierTier3,
                   MultiplierTier4,
-                  MultiplierTier5,
                   fil.FileName
                 from LevelHeader lh
                   join Files fil on fil.fileid = lh.Music_fileid
@@ -49,39 +48,38 @@
 
             foreach($this->db->query($qryGetLevelHeaders) as $row)
             {
-                $levelHeaderId = $row['levelHeaderId'];
-                $levelCode = $row['levelCode'];
+                $levelHeaderId = $row['LevelHeaderId'];
+                $levelCode = $row['LevelCode'];
 
                 $objGameData[$levelCode] = array();
-                $objGameData[$levelCode]['levelName'] = $row['levelName'];
+                $objGameData[$levelCode]['levelName'] = $row['LevelName'];
                 $objGameData[$levelCode]['levelCode'] = $levelCode;
                 $objGameData[$levelCode]['levelMusic'] = $row['FileName'];
                 $objGameData[$levelCode]['MultiplierTier1'] = $row['MultiplierTier1'];
                 $objGameData[$levelCode]['MultiplierTier2'] = $row['MultiplierTier2'];
                 $objGameData[$levelCode]['MultiplierTier3'] = $row['MultiplierTier3'];
                 $objGameData[$levelCode]['MultiplierTier4'] = $row['MultiplierTier4'];
-                $objGameData[$levelCode]['MultiplierTier5'] = $row['MultiplierTier5'];
                 $objGameData[$levelCode]['levelEntities'] = array();
 
                 $qryGetLevelEntities = '
-                    select type,
-                        entityName,
-                        position,
-                        movement,
-                        timing
+                    select Type,
+                        EntityName,
+                        Movement,
+                        Timing,
+                        WaveNumber
                     from LevelEntities le
-                        join Entities ent on ent.entityId = le.entityId
-                    where levelHeaderId = ' . $levelHeaderId;
+                        join Entities ent on ent.EntityId = le.EntityId
+                    where LevelHeaderId = ' . $levelHeaderId;
 
                 $intRowCounter = 0;
                 foreach($this->db->query($qryGetLevelEntities) as $row2)
                 {
                     $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter] = array();
-                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['type'] = $row2['type'];
-                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['entityName'] = $row2['entityName'];
-                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['position'] = $row2['position'];
-                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['movement'] = $row2['movement'];
-                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['timing'] = $row2['timing'];
+                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['type'] = $row2['Type'];
+                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['entityName'] = $row2['EntityName'];
+                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['movement'] = $row2['Movement'];
+                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['timing'] = $row2['Timing'];
+                    $objGameData[$levelCode]['levelEntities']['entity' . $intRowCounter]['waveNumber'] = $row2['WaveNumber'];
 
                     $intRowCounter += 1;
                 }
@@ -96,29 +94,29 @@
 
             $qryGetEntities =
             "
-                select entityName, 
-                  entityType,
-                  hp,
-                  speed,
-                  attackType,
-                  cooldown,
-                  ifnull(spawnSound, 'none') as spawnSound,
-                  bounty
+                select EntityName, 
+                  EntityType,
+                  HP,
+                  Speed,
+                  AttackType,
+                  Cooldown,
+                  ifnull(SpawnSound, 'none') as SpawnSound,
+                  Bounty
                 from Entities
             ";
 
             foreach($this->db->query($qryGetEntities) as $row)
             {
-                $objLevelData[$row['entityName']] = array();
+                $objLevelData[$row['EntityName']] = array();
 
-                $objLevelData[$row['entityName']]['entityName'] = $row['entityName'];
-                $objLevelData[$row['entityName']]['entityType'] = $row['entityType'];
-                $objLevelData[$row['entityName']]['hp'] = $row['hp'];
-                $objLevelData[$row['entityName']]['speed'] = $row['speed'];
-                $objLevelData[$row['entityName']]['attackType'] = $row['attackType'];
-                $objLevelData[$row['entityName']]['cooldown'] = $row['cooldown'];
-                $objLevelData[$row['entityName']]['spawnSound'] = $row['spawnSound'];
-                $objLevelData[$row['entityName']]['bounty'] = $row['bounty'];
+                $objLevelData[$row['EntityName']]['entityName'] = $row['EntityName'];
+                $objLevelData[$row['EntityName']]['entityType'] = $row['EntityType'];
+                $objLevelData[$row['EntityName']]['hp'] = $row['HP'];
+                $objLevelData[$row['EntityName']]['speed'] = $row['Speed'];
+                $objLevelData[$row['EntityName']]['attackType'] = $row['AttackType'];
+                $objLevelData[$row['EntityName']]['cooldown'] = $row['Cooldown'];
+                $objLevelData[$row['EntityName']]['spawnSound'] = $row['SpawnSound'];
+                $objLevelData[$row['EntityName']]['bounty'] = $row['Bounty'];
             }
 
             return $objLevelData;
@@ -133,7 +131,7 @@
                 select FilePath,
                   FileType,
                   FileName,
-                  volume
+                  Volume
                 from Files
                 where FileType = 'sound';
             ";
@@ -145,7 +143,7 @@
                 $objSoundData[$row['FileName']]['FilePath'] = $row['FilePath'];
                 $objSoundData[$row['FileName']]['FileType'] = $row['FileType'];
                 $objSoundData[$row['FileName']]['FileName'] = $row['FileName'];
-                $objSoundData[$row['FileName']]['volume'] = $row['volume'];
+                $objSoundData[$row['FileName']]['volume'] = $row['Volume'];
             }
 
             return $objSoundData;
@@ -160,7 +158,7 @@
                 select FilePath,
                   FileType,
                   FileName,
-                  volume
+                  Volume
                 from Files
                 where FileType = 'music';
             ";
@@ -172,7 +170,7 @@
                 $objMusicData[$row['FileName']]['FilePath'] = $row['FilePath'];
                 $objMusicData[$row['FileName']]['FileType'] = $row['FileType'];
                 $objMusicData[$row['FileName']]['FileName'] = $row['FileName'];
-                $objMusicData[$row['FileName']]['volume'] = $row['volume'];
+                $objMusicData[$row['FileName']]['volume'] = $row['Volume'];
             }
 
             return $objMusicData;
@@ -269,7 +267,7 @@
                     SettingValue
                 from Sessions ses
                     join Settings sts on sts.UserId = ses.UserId
-                where ses.sessionId = 
+                where ses.SessionId = 
             " . $sessionId;
 
             foreach ($this->db->query($qryGetSettingValues) as $row) {
@@ -295,7 +293,7 @@
             $qrySetSetting = $this->db->prepare(
             "
               update Settings sts
-                join Sessions ses on ses.userId = sts.userId
+                join Sessions ses on ses.UserId = sts.UserId
               set sts.SettingValue = :settingValue
               where ses.SessionId = :sessionId
                 and sts.SettingCode = :settingCode
@@ -333,7 +331,7 @@
                     select LevelHeaderId
                     into @LevelHeaderId
                     from LevelHeader
-                    where levelCode = :level;
+                    where LevelCode = :level;
                     
                     select UserId
                     into @UserId
@@ -371,14 +369,14 @@
                 delete sg
                 from SavedGames sg
                   join Sessions ses on ses.UserId = sg.UserId
-                where sessionId = :sessionId;
+                where SessionId = :sessionId;
             ");
 
             $qryDeleteSaves->execute(array(':sessionId' => $sessionId));
 
             $qrySaveGame = $this->db->prepare(
             "
-                insert into SavedGames (UserId, NextLevel, Earnings, Score, PTO, Windate, Nespresso, ActiveIDE, Notepad, NotepadPlusPlus, Far, Eclipse, Dreamweaver, MuleStudio, IntelliJ, Netbeans, purchasedPTO)
+                insert into SavedGames (UserId, NextLevel, Earnings, Score, PTO, Windate, Nespresso, ActiveIDE, Notepad, NotepadPlusPlus, Far, Eclipse, Dreamweaver, MuleStudio, IntelliJ, Netbeans, PurchasedPTO)
                   select UserId,
                     :level,
                     :earnings,
@@ -439,7 +437,7 @@
                   MuleStudio,
                   IntelliJ,
                   Netbeans,
-                  purchasedPTO
+                  PurchasedPTO
                 from SavedGames sg
                   join Sessions ses on ses.UserId = sg.UserId
                 where ses.SessionId = 
@@ -447,7 +445,7 @@
                 delete sg
                 from SavedGames sg
                   join Sessions ses on ses.UserId = sg.UserId
-                where sessionId = ". $sessionId;
+                where SessionId = ". $sessionId;
 
             foreach($this->db->query($qryGetSavedGame) as $row)
             {
@@ -466,7 +464,7 @@
                 $objResponse['muleStudio'] = $row['MuleStudio'];
                 $objResponse['intelliJ'] = $row['IntelliJ'];
                 $objResponse['netbeans'] = $row['Netbeans'];
-                $objResponse['purchasedPTO'] = $row['purchasedPTO'];
+                $objResponse['purchasedPTO'] = $row['PurchasedPTO'];
 
                 $objResponse['blnSuccess'] = true;
                 $objResponse['strMessage'] = 'Game successfully loaded.';
@@ -487,17 +485,42 @@
                 (
                   select usr.Username,
                     lb.Score,
-                    lh.levelNumber
+                    lh.LevelNumber
                   from Leaderboard lb
                     join Users usr on usr.UserId = lb.UserId
                     join LevelHeader lh on lh.LevelHeaderId = lb.LevelHeaderId
-                  order by Score desc, levelNumber desc
+                  order by Score desc, LevelNumber desc
                   limit 25
                 ) as sub;
             ');
 
             $qryLeaderboard->execute();
             return $qryLeaderboard->fetchAll();
+        }
+
+        function checkForSave($sessionId)
+        {
+            $objResponse = array
+            (
+                'blnSuccess' => true,
+                'strMessage' => ''
+            );
+
+            $qryCheckForSave =
+            "
+                select SavedGameId
+                from SavedGames sg
+                  join Sessions ses on ses.UserId = sg.UserId
+                where ses.SessionId = " . $sessionId . ";
+            ";
+
+            foreach($this->db->query($qryCheckForSave) as $row)
+            {
+                $objResponse['blnSuccess'] = true;
+                $objResponse['strMessage'] = $row['SavedGameId'];
+            }
+
+            return $objResponse;
         }
     }
 

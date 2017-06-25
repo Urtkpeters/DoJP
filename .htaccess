@@ -1,5 +1,8 @@
 RewriteEngine On
 
+RewriteCond %{HTTP_HOST} ^odinary.net$ [NC]
+RewriteRule (.*) http://www.odinary.net/$1 [R=301]
+
 RewriteRule ^(.*/)?css(/.*)?$ lib/siteLib/page/css$2 [L]
 RewriteRule ^(.*/)?js(/.*)?$ lib/siteLib/page/js$2 [L]
 RewriteRule ^(.*/)?media(/.*)?$ media$2 [L]

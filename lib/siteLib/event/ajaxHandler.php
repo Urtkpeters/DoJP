@@ -30,9 +30,8 @@
                 $objRequestResponse = $clsLoginHandler->setAccountValue($sessionId, $accountCode, $accountValue);
             }
         }
-        else if($eventTarget == 'getGameData' || $eventTarget == 'getSettingValues' || $eventTarget == 'setSettingValue' || $eventTarget == 'submitScore' || $eventTarget == 'saveGame' || $eventTarget == 'loadGame')
+        else if($eventTarget == 'getGameData' || $eventTarget == 'getSettingValues' || $eventTarget == 'setSettingValue' || $eventTarget == 'submitScore' || $eventTarget == 'saveGame' || $eventTarget == 'loadGame' || $eventTarget == 'checkForSave')
         {
-
             require 'gameHandler.php';
 
             if($eventTarget == 'getGameData')
@@ -60,6 +59,10 @@
             else if($eventTarget == 'loadGame' && isset($sessionId))
             {
                 $objRequestResponse = $clsGameHandler->loadGame($sessionId);
+            }
+            else if($eventTarget == 'checkForSave' && isset($sessionId))
+            {
+                $objRequestResponse = $clsGameHandler->checkForSave($sessionId);
             }
         }
     }
