@@ -3,6 +3,7 @@ body
     background-color: #1A1A1D;
     color: #FFFFFF;
     margin: 0;
+    font-family: Arial, serif;
 }
 
 .navigationDiv
@@ -117,7 +118,6 @@ body
 
 .topButton label
 {
-    font-family: Arial, serif;
     font-weight: bold;
     margin: 0;
 }
@@ -139,7 +139,6 @@ body
     background-color: #950740;
     text-align: left;
     margin-top: 77px;
-    font-family: Arial, sans-serif;
     font-weight: bold;
     font-size: 0;
 }
@@ -191,7 +190,6 @@ body
     color: #000000;
     width: 300px;
     text-align: center !important;
-    font-family: Arial, serif;
     border-radius: 10px;
     background-color: #1A1A1D !important;
     vertical-align: top;
