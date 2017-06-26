@@ -1,19 +1,46 @@
 <?php
     require 'lib/siteLib/event/loginHandler.php';
     $blnLoggedInDB = $clsLoginHandler->checkSession();
+    $title = 'Odinary';
 
     if(!file_exists('lib/siteLib/page/pages/'.$eventTarget.'.php') || ($eventTarget == 'account' && !$blnLoggedInDB))
     {
         $eventTarget = 'home';
     }
+
+    switch($eventTarget)
+    {
+        case 'account':
+            $title = 'Account';
+            break;
+        case 'arc':
+            $title = 'ARC';
+            break;
+        case 'dojp':
+            $title = 'DoJP';
+            break;
+        case 'home':
+            $title = 'Odinary';
+            break;
+        case 'leaderboard':
+            $title = 'Leaderboard';
+            break;
+        case 'patchnotes':
+            $title = 'Patch Notes';
+            break;
+        case 'verifyEmail':
+            $title = 'Verify Email';
+            break;
+    }
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <script src="js/jquery.min.js"></script>
+        <title><?=$title?></title>
+        <link rel="stylesheet" href="css/<?=$eventTarget?>.css" />
         <link rel="stylesheet" href="css/main.css" />
-        <?php echo '<link rel="stylesheet" href="css/'.$eventTarget.'.css" />'; ?>
         <link rel="shortcut icon" href="media/site/favicon.png" type="image/png">
+        <script src="js/jquery.min.js"></script>
         <script src="js/jquery.fancybox.min.js"></script>
         <link rel="stylesheet" href="css/jquery.fancybox.min.css" />
         <script src="js/loginFunctionality.js"></script>
