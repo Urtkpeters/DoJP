@@ -9,7 +9,7 @@ class loginHandler extends databaseHandler
         $objResponse = array
         (
             'blnSuccess' => false,
-            'strMessage' => 'Error processing login request.'
+            'strMessage' => 'Username or password incorrect.'
         );
 
         $strUsername = $_GET['username'];
