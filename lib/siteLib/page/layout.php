@@ -13,7 +13,7 @@
         <script src="js/jquery.min.js"></script>
         <link rel="stylesheet" href="css/main.css" />
         <?php echo '<link rel="stylesheet" href="css/'.$eventTarget.'.css" />'; ?>
-        <link rel="stylesheet" href="css/main.css" />
+        <link rel="shortcut icon" href="media/site/favicon.png" type="image/png">
         <script src="js/jquery.fancybox.min.js"></script>
         <link rel="stylesheet" href="css/jquery.fancybox.min.css" />
         <script src="js/loginFunctionality.js"></script>
