@@ -31,6 +31,9 @@
         case 'verifyEmail':
             $title = 'Verify Email';
             break;
+        case 'ti7':
+            $title = 'ARC - TI7';
+            break;
     }
 ?>
 <html>
@@ -95,6 +98,11 @@
                             <p>ARC</p>
                         </div>
                     </a>
+                    <div class="navDropdown">
+                        <a href="/page/ti7">
+                            <div class="subNavLink">TI7</div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
