@@ -522,6 +522,32 @@
 
             return $objResponse;
         }
+
+        function submitLevelStats($levelCode, $levelTiming, $playerEarnings, $playerPTO, $playerIDE)
+        {
+            $objResponse = array
+            (
+                'blnSuccess' => true,
+                'strMessage' => ''
+            );
+
+            $qrySubmitLevelStats = $this->db->prepare
+            ('
+                insert into LevelStats(LevelHeaderId, CreateDate, LevelTiming, PlayerEarnings, PlayerPTO, PlayerIDE)
+                  select LevelHeaderId,
+                    now(),
+                    :levelTiming,
+                    :playerEarnings,
+                    :playerPTO,
+                    :playerIDE
+                  from LevelHeader
+                  where LevelCode = :levelCode;
+            ');
+
+            $qrySubmitLevelStats->execute(array(':levelCode' => $levelCode,':levelTiming' =>  $levelTiming,':playerEarnings' =>  $playerEarnings,':playerPTO' =>  $playerPTO,':playerIDE' =>  $playerIDE));
+
+            return $objResponse;
+        }
     }
 
     $clsGameHandler = new gameHandler();

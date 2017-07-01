@@ -30,7 +30,8 @@
                 $objRequestResponse = $clsLoginHandler->setAccountValue($sessionId, $accountCode, $accountValue);
             }
         }
-        else if($eventTarget == 'getGameData' || $eventTarget == 'getSettingValues' || $eventTarget == 'setSettingValue' || $eventTarget == 'submitScore' || $eventTarget == 'saveGame' || $eventTarget == 'loadGame' || $eventTarget == 'checkForSave')
+        else if($eventTarget == 'getGameData' || $eventTarget == 'getSettingValues' || $eventTarget == 'setSettingValue' || $eventTarget == 'submitScore' ||
+            $eventTarget == 'saveGame' || $eventTarget == 'loadGame' || $eventTarget == 'checkForSave' || $eventTarget == 'submitLevelStats')
         {
             require 'gameHandler.php';
 
@@ -63,6 +64,10 @@
             else if($eventTarget == 'checkForSave' && isset($sessionId))
             {
                 $objRequestResponse = $clsGameHandler->checkForSave($sessionId);
+            }
+            else if($eventTarget == 'submitLevelStats')
+            {
+                $objRequestResponse = $clsGameHandler->submitLevelStats($levelCode, $levelTiming, $playerEarnings, $playerPTO, $playerIDE);
             }
         }
     }
