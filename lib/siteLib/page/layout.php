@@ -106,7 +106,7 @@
                 </div>
             </div>
         </div>
-        <div id="messages" class="messages"></div>
+        <div id="messages" class="messages">&nbsp;</div>
         <div id="pageContents" class="pageContents">
             <?php
                 require 'pages/'.$eventTarget.'.php';
@@ -122,7 +122,7 @@
                     <input id="password" type="password" placeholder="Password" onkeypress="return login(event)" autocomplete="off" />
                     <div id="forgotPasswordLink" class="forgotPasswordLink" onclick="return showForgotPassword(event)">Forgot Password?</div>
                 </div>
-                <div id="loginErrorDiv" class="errorDiv"></div>
+                <div id="loginErrorDiv" class="errorDiv">&nbsp;</div>
                 <div id="loginRegisterButton" class="submitButton" onclick="return showRegister(event)">
                     <label>REGISTER</label>
                 </div>
@@ -144,7 +144,7 @@
                 <div id="newPasswordConfirmDiv" class="inputDiv">
                     <input id="newPasswordConfirm" type="password" placeholder="Confirm Password" onkeypress="return register(event)" autocomplete="off" />
                 </div>
-                <div id="registerErrorDiv" class="errorDiv"></div>
+                <div id="registerErrorDiv" class="errorDiv">&nbsp;</div>
                 <div id="registerLoginButton" class="submitButton" onclick="return showLogin(event)">
                     <label>LOGIN</label>
                 </div>
@@ -160,7 +160,7 @@
                 <div id="fpEmailDiv" class="inputDiv">
                     <input id="fpEmail" type="text" placeholder="Email Address" onkeypress="return forgotPassword(event)" autocomplete="off" />
                 </div>
-                <div id="fpErrorDiv" class="errorDiv"></div>
+                <div id="fpErrorDiv" class="errorDiv">&nbsp;</div>
                 <div id="fpLoginButton" class="submitButton" onclick="return showLogin(event)">
                     <label>LOGIN</label>
                 </div>
