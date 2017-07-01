@@ -120,6 +120,7 @@
                 </div>
                 <div id="loginPasswordDiv" class="inputDiv">
                     <input id="password" type="password" placeholder="Password" onkeypress="return login(event)" autocomplete="off" />
+                    <div id="forgotPasswordLink" class="forgotPasswordLink" onclick="return showForgotPassword(event)">Forgot Password?</div>
                 </div>
                 <div id="loginErrorDiv" class="errorDiv"></div>
                 <div id="loginRegisterButton" class="submitButton" onclick="return showRegister(event)">
@@ -148,6 +149,22 @@
                     <label>LOGIN</label>
                 </div>
                 <div id="registerSubmitButton" class="submitButton" onclick="return register(event)">
+                    <label>SUBMIT</label>
+                </div>
+            </div>
+            <div id="fpLightbox" class="lightboxContainer">
+                <label>FORGOT PASSWORD</label>
+                <div id="fpUsernameDiv" class="inputDiv">
+                    <input id="fpUsername" type="text" placeholder="Username" onkeypress="return forgotPassword(event)" autocomplete="off" />
+                </div>
+                <div id="fpEmailDiv" class="inputDiv">
+                    <input id="fpEmail" type="text" placeholder="Email Address" onkeypress="return forgotPassword(event)" autocomplete="off" />
+                </div>
+                <div id="fpErrorDiv" class="errorDiv"></div>
+                <div id="fpLoginButton" class="submitButton" onclick="return showLogin(event)">
+                    <label>LOGIN</label>
+                </div>
+                <div id="fpSubmitButton" class="submitButton" onclick="return forgotPassword(event)">
                     <label>SUBMIT</label>
                 </div>
             </div>

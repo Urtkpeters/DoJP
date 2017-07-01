@@ -9,7 +9,7 @@
 
     if(isset($eventTarget))
     {
-        if($eventTarget == 'login' || $eventTarget == 'logout' || $eventTarget == 'register' || $eventTarget == 'setAccountValue')
+        if($eventTarget == 'login' || $eventTarget == 'logout' || $eventTarget == 'register' || $eventTarget == 'setAccountValue' || $eventTarget == 'forgotPassword')
         {
             require 'loginHandler.php';
 
@@ -28,6 +28,10 @@
             else if($eventTarget == 'setAccountValue' && isset($sessionId) && isset($accountCode) && isset($accountValue))
             {
                 $objRequestResponse = $clsLoginHandler->setAccountValue($sessionId, $accountCode, $accountValue);
+            }
+            else if($eventTarget == 'forgotPassword' && isset($username) && isset($email))
+            {
+                $objRequestResponse = $clsLoginHandler->forgotPassword($username, $email);
             }
         }
         else if($eventTarget == 'getGameData' || $eventTarget == 'getSettingValues' || $eventTarget == 'setSettingValue' || $eventTarget == 'submitScore' ||

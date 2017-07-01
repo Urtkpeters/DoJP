@@ -172,7 +172,7 @@ class loginHandler extends databaseHandler
             $qryInsertUser->execute(array(':username' => $username, ':emailAddress' => $emailAddress, ':password' => $password, ':verificationCode' => $verificationCode));
 
             // This is here in case I am running this locally. I don't have a means of sending out mail so it just makes everything crash.
-            if($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != 'DoJP.com')
+            if($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != 'dojp.com')
             {
                 $emailMessage = '
                     <html>
@@ -311,6 +311,90 @@ class loginHandler extends databaseHandler
 
         $qryGetUserInfo->execute();
         return $qryGetUserInfo->fetchAll();
+    }
+
+    function forgotPassword($username, $email)
+    {
+        $objResponse = array
+        (
+            'blnSuccess' => false,
+            'strMessage' => 'No matches for username and email.'
+        );
+
+        $qryCheckForUser = $this->db->prepare
+        ('
+            select count(UserId) as UserCount
+            from Users
+            where Username = :username
+              and EmailAddress = :email
+        ');
+
+        $qryCheckForUser->execute(array(':username' => $username, ':email' => $email));
+        $result = $qryCheckForUser->fetchObject();
+
+        if($result->UserCount > 0)
+        {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+
+            for($i = 0; $i < 10; $i++)
+            {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+
+            $password = hash('sha512', $randomString);
+
+            $qryResetPassword = $this->db->prepare
+            ('
+              update Users
+              set Password = :password
+              where Username = :username
+                and EmailAddress = :email;
+            ');
+
+            $qryResetPassword->execute(array(':username' => $username, ':email' => $email, ':password' => $password));
+
+            // This is here in case I am running this locally. I don't have a means of sending out mail so it just makes everything crash.
+            if($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != 'dojp.com')
+            {
+                $emailMessage = '
+                    <html>
+                        <body>
+                            <div style="background-color: #303033; width: 1000px; height: 107px;">
+                                <div style="width: 100%; height: 30px; text-align: left; background-color: #950740; float: left; margin-top: 77px;"></div>
+                                <div style="float: left; margin-top: -100px; margin-left: 291px;"><a href="http://odinary.net/"><img src="http://odinary.net/media/site/logo2.png" style="height: 100px; "></a></div>
+                            </div>
+                            <div style="margin-top: -20px; background-color: #1A1A1D; width: 1000px; height: 600px; color: #FFFFFF;">
+                                <p style="margin-bottom: 25px; margin-left: 300px; padding-top: 50px; font-size: 20px; font-weight: bold;">Hello '.$username.',</p>
+                                <p style="margin-left: 325px; padding-top: 25px;">A reset password has been triggered for your account. Your new temporary password is below.</p>
+                                <p style="margin-left: 350px;">'.$randomString.'</p>
+                                <p style="margin-left: 300px; margin-top: 75px;">Sincerely,</p>
+                                <p style="margin-left: 300px; font-weight: bold;">Odinary.net</p>
+                            </div>
+                        </body>
+                    </html>
+                ';
+
+                $headers = 'Content-type: text/html; charset=iso-8859-1' . '\r\n';
+                $headers .= 'To: ' . $username . ' <' . $email . '>' . '\r\n';
+                $headers .= 'From: Odinary <noreply@odinary.net>';
+
+                mail
+                (
+                    $email,
+                    'Odinary - Reset Password',
+                    $emailMessage,
+                    $headers,
+                    '-f noreply@odinary.net'
+                );
+            }
+
+            $objResponse['blnSuccess'] = true;
+            $objResponse['strMessage'] = 'Email has been sent.';
+        }
+
+        return $objResponse;
     }
 }
 

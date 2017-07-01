@@ -257,13 +257,13 @@ body
     margin-top: 30px;
 }
 
-#loginSubmitButton, #registerSubmitButton
+#loginSubmitButton, #registerSubmitButton, #fpSubmitButton
 {
     margin-left: auto;
     float: right;
 }
 
-#loginRegisterButton, #registerLoginButton
+#loginRegisterButton, #registerLoginButton, #fpLoginButton
 {
     margin-left: 0;
     float: left;
@@ -352,4 +352,19 @@ body
 .footer a:visited
 {
     color: #363639;
+}
+
+.forgotPasswordLink
+{
+    color: #444444;
+    text-decoration: underline;
+    text-align: left;
+    font-size: 10px;
+    margin: 8px 0 0 50px;
+}
+
+.forgotPasswordLink:hover
+{
+    color: #555555;
+    cursor: pointer;
 }
