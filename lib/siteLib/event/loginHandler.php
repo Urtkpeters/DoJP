@@ -19,20 +19,22 @@ class loginHandler extends databaseHandler
         $strPassword = hash('sha512', $strPassword);
 
         $qryCheckLogin = '
-          select userId, 
-            username,
-            verified
+          select UserId, 
+            Username,
+            Verified,
+            ARCUser
           from Users
           where username = \'' . $strUsername . '\' 
             and password = \'' . $strPassword . '\';';
 
         foreach($this->db->query($qryCheckLogin) as $row)
         {
-            if($row['verified'] == 1)
+            if($row['Verified'] == 1)
             {
                 $objResponse['blnSuccess'] = true;
                 $objResponse['strMessage'] = 'You have been successfully logged in.';
-                $intUserId = $row['userId'];
+                $objResponse['blnARCUser'] = $row['ARCUser'];
+                $intUserId = $row['UserId'];
             }
             else
             {
@@ -395,6 +397,35 @@ class loginHandler extends databaseHandler
         }
 
         return $objResponse;
+    }
+
+    function checkForARC()
+    {
+        $blnARCUser = false;
+
+        if(isset($_COOKIE['SCfDoJP']))
+        {
+            $intSessionId = $_COOKIE["SCfDoJP"];
+
+            $qryCheckLoggedIn = '
+                select ses.sessionId
+                from Sessions ses
+                  join Users usr on usr.UserId = ses.UserId
+                where ses.timeStamp > now()
+                  and ses.sessionActive = 1
+                  and usr.ARCUser = 1
+                  and ses.sessionId = ' . $intSessionId;
+
+            foreach($this->db->query($qryCheckLoggedIn) as $row)
+            {
+                if($row['sessionId'] != 0)
+                {
+                    $blnARCUser = true;
+                }
+            }
+        }
+
+        return $blnARCUser;
     }
 }
 

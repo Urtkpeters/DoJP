@@ -1,9 +1,10 @@
 <?php
     require 'lib/siteLib/event/loginHandler.php';
     $blnLoggedInDB = $clsLoginHandler->checkSession();
+    $blnARCUser = $clsLoginHandler->checkForARC();
     $title = 'Odinary';
 
-    if(!file_exists('lib/siteLib/page/pages/'.$eventTarget.'.php') || ($eventTarget == 'account' && !$blnLoggedInDB))
+    if(!file_exists('lib/siteLib/page/pages/'.$eventTarget.'.php') || ($eventTarget == 'account' && !$blnLoggedInDB) || ($eventTarget == 'builds' && $blnLoggedInDB && !$blnARCUser))
     {
         $eventTarget = 'home';
     }
@@ -33,6 +34,9 @@
             break;
         case 'ti7':
             $title = 'ARC - TI7';
+            break;
+        case 'builds':
+            $title = 'ARC - Builds';
             break;
     }
 ?>
@@ -85,23 +89,33 @@
                     </a>
                     <div class="navDropdown">
                         <a href="/page/leaderboard">
-                                <div class="subNavLink">Leaderboard</div>
+                            <div class="subNavLink">Leaderboard</div>
                         </a>
                         <a href="/page/patchnotes">
                             <div class="subNavLink">Patch Notes</div>
                         </a>
                     </div>
                 </div>
-                <div class="arcNav">
+                <div id="arcNav" class="arcNav">
                     <a class="arcNavLink" href="/page/arc">
                         <div id="arcNav2" class="navLink">
                             <p>ARC</p>
                         </div>
                     </a>
-                    <div class="navDropdown">
+                    <div id="arcSubNav" class="navDropdown">
                         <a href="/page/ti7">
                             <div class="subNavLink">TI7</div>
                         </a>
+                        <?php
+                            if($blnARCUser)
+                            {
+                                ?>
+                                    <a id="arcBuildLink" href="/page/builds">
+                                        <div class="subNavLink">Builds</div>
+                                    </a>
+                                <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
