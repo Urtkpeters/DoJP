@@ -55,3 +55,21 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+.gameDivChromeFullscreen
+{
+    height: 0;
+    width: 75%;
+    padding-bottom: 56.25%;
+    position: relative;
+    margin: 0;
+}
+
+.gameCanvasChromeFullscreen
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
