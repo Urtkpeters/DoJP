@@ -6,6 +6,11 @@ body
     font-family: Arial, serif;
 }
 
+input
+{
+    outline: none;
+}
+
 .navigationDiv
 {
     width: 100%;
