@@ -1,5 +1,6 @@
 .homeBanner
 {
+    position: relative;
     width: 71.4%;
     margin: 0 auto 100px auto;
 }
@@ -8,4 +9,38 @@
 {
     width: 99.9%;
     border: solid 1px #FFFFFF;
+}
+
+.bannerSlide
+{
+    position: absolute;
+}
+
+.sliderButton
+{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: #000000;
+    opacity: 0.5;
+    z-index: 3;
+    text-align: center;
+    margin-top: 300px;
+    font-size: 25px;
+}
+
+.sliderButton:hover
+{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.sliderBackButton
+{
+    left: 0;
+}
+
+.sliderForwardButton
+{
+    right: 0;
 }
