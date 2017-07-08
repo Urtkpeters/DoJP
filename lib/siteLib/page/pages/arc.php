@@ -1,5 +1,5 @@
 <div class="arcDiv">
-    <div class="arcTitle">ARC</div>
+    <div class="arcTitle2"><div class="arcTitle"><img src="media/site/ARCLogo.jpg" /></div></div>
     <div class="arcSubTitle">[All Random Chaos]</div>
     <div class="playersDiv">
         <div class="playerDiv">
