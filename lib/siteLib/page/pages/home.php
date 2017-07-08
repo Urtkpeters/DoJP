@@ -79,11 +79,11 @@
         {
             if(i != slideIndex)
             {
-                $('#bannerSlide' + i).animate({ opacity: 0 }, 750);
+                $('#bannerSlide' + i).animate({ opacity: 0 }, 750).delay(750).css('z-index', 1);
             }
             else
             {
-                $('#bannerSlide' + i).animate({ opacity: 1 }, 750);
+                $('#bannerSlide' + i).animate({ opacity: 1 }, 750).delay(750).css('z-index', 2);
             }
         }
     }
