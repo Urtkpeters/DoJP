@@ -19,20 +19,20 @@ class loginHandler extends databaseHandler
         $strPassword = hash('sha512', $strPassword);
 
         $qryCheckLogin = '
-          select userId, 
-            username,
-            verified
+          select UserId, 
+            Username,
+            Verified+0 as Verified
           from Users
-          where username = \'' . $strUsername . '\' 
-            and password = \'' . $strPassword . '\';';
+          where Username = \'' . $strUsername . '\' 
+            and Password = \'' . $strPassword . '\';';
 
         foreach($this->db->query($qryCheckLogin) as $row)
         {
-            if($row['verified'] == 1)
+            if($row['Verified'] == 1)
             {
                 $objResponse['blnSuccess'] = true;
                 $objResponse['strMessage'] = 'You have been successfully logged in.';
-                $intUserId = $row['userId'];
+                $intUserId = $row['UserId'];
             }
             else
             {

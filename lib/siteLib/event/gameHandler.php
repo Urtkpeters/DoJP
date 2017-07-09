@@ -264,7 +264,7 @@
             $qryGetSettingValues =
             "
                 select SettingCode,
-                    SettingValue
+                    SettingValue+0 as SettingValue
                 from Sessions ses
                     join Settings sts on sts.UserId = ses.UserId
                 where ses.SessionId = 
