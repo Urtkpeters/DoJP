@@ -1,5 +1,87 @@
 <div class="patchnotesTitle">Patch Notes</div>
 <div class="versionDiv">
+    <h1 class="topVersion">1.0.5</h1>
+    <p>______________________________________________________________</p>
+    <h2>Level Changes</h2>
+    <h3>Tombstone Bug</h3>
+    <label>HP: 3500 -> 3000</label>
+    <h3>Level Timing</h3>
+    <table class="timingTable">
+        <tbody>
+            <tr>
+                <td>LevelNumber</td><td>x 1.4</td><td>x 1.2</td><td>x 1.0</td><td>x 0.8</td><td>x 0.6</td>
+            </tr>
+            <tr>
+                <td>Level 2</td><td>< 3100</td><td>3100 - 3550</td><td>3550 - 4000</td><td>4000 - 4600</td><td>4600 ></td>
+            </tr>
+            <tr>
+                <td>Level 3</td><td>< 3200</td><td>3200 - 3650</td><td>3650 - 4100</td><td>4100 - 4700</td><td>4700 ></td>
+            </tr>
+            <tr>
+                <td>Level 4</td><td>< 2900</td><td>2900 - 3350</td><td>3350 - 3800</td><td>3800 - 4400</td><td>4400 ></td>
+            </tr>
+            <tr>
+                <td>Level 5</td><td>< 3900</td><td>3900 - 4350</td><td>4350 - 4800</td><td>4800 - 5400</td><td>5400 ></td>
+            </tr>
+            <tr>
+                <td>Level 7</td><td>< 3300</td><td>3300 - 3750</td><td>3750 - 4200</td><td>4200 - 4800</td><td>4800 ></td>
+            </tr>
+            <tr>
+                <td>Level 10</td><td>< 3100</td><td>3100 - 3550</td><td>3550 - 4000</td><td>4000 - 4600</td><td>4600 ></td>
+            </tr>
+            <tr>
+                <td>Level 11</td><td>< 3500</td><td>3500 - 3950</td><td>3950 - 4400</td><td>4400 - 5000</td><td>5000 ></td>
+            </tr>
+            <tr>
+                <td>Level 12</td><td>< 4500</td><td>4500 - 4950</td><td>4950 - 5400</td><td>5400 - 6000</td><td>6000 ></td>
+            </tr>
+            <tr>
+                <td>Level 14</td><td>< 6500</td><td>6500 - 6950</td><td>6950 - 7400</td><td>7400 - 8000</td><td>8000 ></td>
+            </tr>
+            <tr>
+                <td>Level 15</td><td>< 3500</td><td>3500 - 3950</td><td>3950 - 4400</td><td>4400 - 5000</td><td>5000 ></td>
+            </tr>
+            <tr>
+                <td>Level 16</td><td>< 3000</td><td>3000 - 3450</td><td>3450 - 3900</td><td>3900 - 4500</td><td>4500 ></td>
+            </tr>
+            <tr>
+                <td>Level 17</td><td>< 4600</td><td>4600 - 5050</td><td>5050 - 5500</td><td>5500 - 6100</td><td>6100 ></td>
+            </tr>
+            <tr>
+                <td>Level 18</td><td>< 5100</td><td>5100 - 5550</td><td>5550 - 6000</td><td>6000 - 6600</td><td>6600 ></td>
+            </tr>
+            <tr>
+                <td>Level 19</td><td>< 6100</td><td>6100 - 6550</td><td>6550 - 7000</td><td>7000 - 7600</td><td>7600 ></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="endLine">______________________________________________________________</p>
+    <h2>Player Changes</h2>
+    <h3>Far</h3>
+    <label>Starting Cost: 1000 -> 600</label>
+    <label>Base Upgrade Cost: 200 -> 120</label>
+    <label>Incremental Cost: 100 -> 60</label>
+    <h3>Dreamweaver</h3>
+    <label>Starting Cost: 1200 -> 1000</label>
+    <label>Base Upgrade Cost: 240 -> 200</label>
+    <label>Incremental Cost: 120 -> 100</label>
+    <h3>Netbeans</h3>
+    <label>Starting Cost: 1200 -> 1000</label>
+    <label>Base Upgrade Cost: 240 -> 200</label>
+    <label>Incremental Cost: 120 -> 100</label>
+    <h3>Mule Studio</h3>
+    <label>Starting Cost: 1800 -> 1400</label>
+    <label>Base Upgrade Cost: 360 -> 280</label>
+    <label>Incremental Cost: 180 -> 140</label>
+    <h3>Eclipse</h3>
+    <label>Starting Cost: 1800 -> 1400</label>
+    <label>Base Upgrade Cost: 360 -> 280</label>
+    <label>Incremental Cost: 180 -> 140</label>
+    <h3>IntelliJ</h3>
+    <label>Starting Cost: 1800 -> 1400</label>
+    <label>Base Upgrade Cost: 360 -> 280</label>
+    <label>Incremental Cost: 180 -> 140</label>
+    <p class="endLine">______________________________________________________________</p>
     <h1 class="topVersion">1.0.4</h1>
     <p>______________________________________________________________</p>
     <h2>Level Changes</h2>
