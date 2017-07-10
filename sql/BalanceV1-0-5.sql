@@ -1,0 +1,14 @@
+update LevelHeader set MultiplierTier1 = '3100', MultiplierTier2 = '3550', MultiplierTier3 = '4000', MultiplierTier4 = '4600' where LevelCode = 'level2';
+update LevelHeader set MultiplierTier1 = '3200', MultiplierTier2 = '3650', MultiplierTier3 = '4100', MultiplierTier4 = '4700' where LevelCode = 'level3';
+update LevelHeader set MultiplierTier1 = '2900', MultiplierTier2 = '3350', MultiplierTier3 = '3800', MultiplierTier4 = '4400' where LevelCode = 'level4';
+update LevelHeader set MultiplierTier1 = '3900', MultiplierTier2 = '4350', MultiplierTier3 = '4800', MultiplierTier4 = '5400' where LevelCode = 'level5';
+update LevelHeader set MultiplierTier1 = '3300', MultiplierTier2 = '3750', MultiplierTier3 = '4200', MultiplierTier4 = '4800' where LevelCode = 'level7';
+update LevelHeader set MultiplierTier1 = '3100', MultiplierTier2 = '3550', MultiplierTier3 = '4000', MultiplierTier4 = '4600' where LevelCode = 'level10';
+update LevelHeader set MultiplierTier1 = '3500', MultiplierTier2 = '3950', MultiplierTier3 = '4400', MultiplierTier4 = '5000' where LevelCode = 'level11';
+update LevelHeader set MultiplierTier1 = '4500', MultiplierTier2 = '4950', MultiplierTier3 = '5400', MultiplierTier4 = '6000' where LevelCode = 'level12';
+update LevelHeader set MultiplierTier1 = '6500', MultiplierTier2 = '6950', MultiplierTier3 = '7400', MultiplierTier4 = '8000' where LevelCode = 'level14';
+update LevelHeader set MultiplierTier1 = '3500', MultiplierTier2 = '3950', MultiplierTier3 = '4400', MultiplierTier4 = '5000' where LevelCode = 'level15';
+update LevelHeader set MultiplierTier1 = '3000', MultiplierTier2 = '3450', MultiplierTier3 = '3900', MultiplierTier4 = '4500' where LevelCode = 'level16';
+update LevelHeader set MultiplierTier1 = '4600', MultiplierTier2 = '5050', MultiplierTier3 = '5500', MultiplierTier4 = '6100' where LevelCode = 'level17';
+update LevelHeader set MultiplierTier1 = '5100', MultiplierTier2 = '5550', MultiplierTier3 = '6000', MultiplierTier4 = '6600' where LevelCode = 'level18';
+update LevelHeader set MultiplierTier1 = '6100', MultiplierTier2 = '6550', MultiplierTier3 = '7000', MultiplierTier4 = '7600' where LevelCode = 'level19';
