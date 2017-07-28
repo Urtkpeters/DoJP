@@ -361,7 +361,7 @@
             return $objResponse;
         }
 
-        function saveGame($sessionId, $level, $earnings, $score, $pto, $windate, $nespresso,
+        function saveGame($sessionId, $level, $earnings, $score, $pto, $windate, $capsule,
                           $activeide, $notepad, $notepadplusplus, $far, $eclipse, $dreamweaver, $muleStudio, $intelliJ, $netbeans, $purchasedPTO)
         {
             $qryDeleteSaves = $this->db->prepare(
@@ -376,14 +376,14 @@
 
             $qrySaveGame = $this->db->prepare(
             "
-                insert into SavedGames (UserId, NextLevel, Earnings, Score, PTO, Windate, Nespresso, ActiveIDE, Notepad, NotepadPlusPlus, Far, Eclipse, Dreamweaver, MuleStudio, IntelliJ, Netbeans, PurchasedPTO)
+                insert into SavedGames (UserId, NextLevel, Earnings, Score, PTO, Windate, Capsule, ActiveIDE, Notepad, NotepadPlusPlus, Far, Eclipse, Dreamweaver, MuleStudio, IntelliJ, Netbeans, PurchasedPTO)
                   select UserId,
                     :level,
                     :earnings,
                     :score,
                     :pto,
                     :windate,
-                    :nespresso,
+                    :capsule,
                     :activeIDE,
                     :notepad,
                     :notepadplusplus,
@@ -400,7 +400,7 @@
             ");
 
             $qrySaveGame->execute(array(':level' => $level, ':sessionId' => $sessionId, ':score' => $score, ':earnings' => $earnings, ':pto' => $pto, ':windate' => $windate,
-                ':nespresso' => $nespresso, ':activeIDE' => $activeide, ':notepad' => $notepad, ':notepadplusplus' => $notepadplusplus, ':far' => $far, ':eclipse' => $eclipse, ':dreamweaver' => $dreamweaver,
+                ':capsule' => $capsule, ':activeIDE' => $activeide, ':notepad' => $notepad, ':notepadplusplus' => $notepadplusplus, ':far' => $far, ':eclipse' => $eclipse, ':dreamweaver' => $dreamweaver,
                 ':muleStudio' => $muleStudio, ':intelliJ' => $intelliJ, ':netbeans' => $netbeans, ':purchasedPTO' => $purchasedPTO));
 
             $objResponse = array
@@ -427,7 +427,7 @@
                   Score,
                   PTO,
                   WinDate,
-                  Nespresso,
+                  Capsule,
                   ActiveIDE,
                   Notepad,
                   NotepadPlusPlus,
@@ -454,7 +454,7 @@
                 $objResponse['score'] = $row['Score'];
                 $objResponse['pto'] = $row['PTO'];
                 $objResponse['windate'] = $row['WinDate'];
-                $objResponse['nespresso'] = $row['Nespresso'];
+                $objResponse['capsule'] = $row['Capsule'];
                 $objResponse['activeIDE'] = $row['ActiveIDE'];
                 $objResponse['notepad'] = $row['Notepad'];
                 $objResponse['notepadPlusPlus'] = $row['NotepadPlusPlus'];

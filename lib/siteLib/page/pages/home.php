@@ -2,7 +2,7 @@
     <div id="sliderBackButton" class="sliderButton sliderBackButton">&#10094;</div>
     <div id="sliderForwardButton" class="sliderButton sliderForwardButton">&#10095;</div>
     <div id="bannerSlide1" class="bannerSlide" style="opacity: 1;">
-        <a href="page/dojp"><img id="bannerImage" src="media/site/dojpBanner.jpg" /></a>
+        <a href="page/dol"><img id="bannerImage" src="media/site/dolBanner.jpg" /></a>
     </div>
     <div id="bannerSlide2" class="bannerSlide" style="opacity: 0;">
         <a href="page/arc"><img id="bannerImage" src="media/site/ARCBanner.jpg" /></a>

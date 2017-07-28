@@ -16,8 +16,8 @@
         case 'arc':
             $title = 'ARC';
             break;
-        case 'dojp':
-            $title = 'DoJP';
+        case 'dol':
+            $title = 'DoL';
             break;
         case 'home':
             $title = 'Odinary';
@@ -77,10 +77,10 @@
                 ?>
             </div>
             <div class="mainNavigation">
-                <div class="dojpNav">
-                    <a class="gameNavLink" href="/page/dojp">
+                <div class="dolNav">
+                    <a class="gameNavLink" href="/page/dol">
                         <div id="gameNav" class="navLink">
-                            <p>DoJP</p>
+                            <p>DoL</p>
                         </div>
                     </a>
                     <div class="navDropdown">

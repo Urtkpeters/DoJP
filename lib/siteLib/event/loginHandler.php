@@ -47,7 +47,7 @@ class loginHandler extends databaseHandler
 
             $strDomain = $_SERVER['HTTP_HOST'];
 
-            setcookie( "SCfDoJP", $intSessionID, time()+7200, "/", $strDomain, 0);
+            setcookie( "SCfDoL", $intSessionID, time()+7200, "/", $strDomain, 0);
 
             $stmt = $this->db->prepare('
               insert into Sessions (sessionId, sessionActive, timeStamp, userId) 
@@ -67,9 +67,9 @@ class loginHandler extends databaseHandler
             'strMessage' => 'Error processing logout request.'
         );
 
-        if(isset($_COOKIE['SCfDoJP']))
+        if(isset($_COOKIE['SCfDoL']))
         {
-            $intSessionId = $_COOKIE["SCfDoJP"];
+            $intSessionId = $_COOKIE["SCfDoL"];
 
             $qryCheckLoggedIn = $this->db->prepare('
               update Sessions
@@ -79,8 +79,8 @@ class loginHandler extends databaseHandler
             $qryCheckLoggedIn->execute(array(':sessionId' => $intSessionId));
 
             // Both of these will not just deactivate the cookie but also remove from the browser upon next page load.
-            unset($_COOKIE['SCfDoJP']);
-            setcookie('SCfDoJP', '', time()-3600, '/');
+            unset($_COOKIE['SCfDoL']);
+            setcookie('SCfDoL', '', time()-3600, '/');
 
             $objResponse['blnSuccess'] = true;
             $objResponse['strMessage'] = 'You have been successfully logged out.';
@@ -93,9 +93,9 @@ class loginHandler extends databaseHandler
     {
         $blnLoggedInDB = false;
 
-        if(isset($_COOKIE['SCfDoJP']))
+        if(isset($_COOKIE['SCfDoL']))
         {
-            $intSessionId = $_COOKIE["SCfDoJP"];
+            $intSessionId = $_COOKIE["SCfDoL"];
 
             $qryCheckLoggedIn = '
                 select sessionId
@@ -115,8 +115,8 @@ class loginHandler extends databaseHandler
             if(!$blnLoggedInDB)
             {
                 // Both of these will not just deactivate the cookie but also remove from the browser upon next page load.
-                unset($_COOKIE['SCfDoJP']);
-                setcookie('SCfDoJP', '', time()-3600, '/');
+                unset($_COOKIE['SCfDoL']);
+                setcookie('SCfDoL', '', time()-3600, '/');
             }
         }
 
@@ -172,7 +172,7 @@ class loginHandler extends databaseHandler
             $qryInsertUser->execute(array(':username' => $username, ':emailAddress' => $emailAddress, ':password' => $password, ':verificationCode' => $verificationCode));
 
             // This is here in case I am running this locally. I don't have a means of sending out mail so it just makes everything crash.
-            if($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != 'dojp.com')
+            if($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != 'dol.com')
             {
                 $emailMessage = '
                     <html>
@@ -292,7 +292,7 @@ class loginHandler extends databaseHandler
 
     function getAccountInfo()
     {
-        $intSessionId = $_COOKIE["SCfDoJP"];
+        $intSessionId = $_COOKIE["SCfDoL"];
 
         $qryGetUserInfo = $this->db->prepare
         ("
@@ -356,7 +356,7 @@ class loginHandler extends databaseHandler
             $qryResetPassword->execute(array(':username' => $username, ':email' => $email, ':password' => $password));
 
             // This is here in case I am running this locally. I don't have a means of sending out mail so it just makes everything crash.
-            if($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != 'dojp.com')
+            if($_SERVER['HTTP_HOST'] != 'localhost' && $_SERVER['HTTP_HOST'] != 'dol.com')
             {
                 $emailMessage = '
                     <html>

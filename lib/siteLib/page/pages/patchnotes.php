@@ -234,7 +234,7 @@
     <h2>Player Changes</h2>
     <h3>PTO</h3>
     <label>Cost: 250 -> 150</label>
-    <h3>Nespresso</h3>
+    <h3>Capsule</h3>
     <label>Incrementing Movement: 0.5 -> 0.3</label><br />
     <label>Incrementing Cost: 0 -> 50</label>
     <h3>Laptop</h3>

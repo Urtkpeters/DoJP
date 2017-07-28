@@ -10,7 +10,7 @@
         <p class="imgP"><a href="http://www.piskel.com/"><img src="media/site/PiskelLogo.png" /></a></p>
         <p class="imgP"><a href="http://www.freesound.org/"><img src="media/site/FreeSoundLogo.png" /></a></p>
         <p>To see a blow-by-blow on how this project was created please see my GitHub link below.</p>
-        <p class="imgP"><a href="https://github.com/Urtkpeters/DoJP/"><img src="media/site/GitHubLogo2.png" /></a></p>
+        <p class="imgP"><a href="https://github.com/Urtkpeters/DoL/"><img src="media/site/GitHubLogo2.png" /></a></p>
     </div>
 </div>
 <script>

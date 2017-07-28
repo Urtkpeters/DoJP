@@ -17,7 +17,7 @@
         $strLevel = $row['levelNumber'];
     }
 
-    $sessionId = $_COOKIE["SCfDoJP"];
+    $sessionId = $_COOKIE["SCfDoL"];
     $settingValues = $clsGameHandler->getSettingValues($sessionId);
 
     $enableMusic = $settingValues['EnableMusic'] ? 'true' : 'false';

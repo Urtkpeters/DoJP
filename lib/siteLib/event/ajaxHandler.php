@@ -55,10 +55,10 @@
             {
                 $objRequestResponse = $clsGameHandler->submitScore($sessionId, $score, $level);
             }
-            else if($eventTarget == 'saveGame' && isset($sessionId) && isset($level) && isset($earnings) && isset($score) && isset($pto) && isset($windate) && isset($nespresso) &&
+            else if($eventTarget == 'saveGame' && isset($sessionId) && isset($level) && isset($earnings) && isset($score) && isset($pto) && isset($windate) && isset($capsule) &&
                 isset($activeide) && isset($notepad) && isset($notepadplusplus) && isset($far) && isset($eclipse) && isset($dreamweaver) && isset($mulestudio) && isset($intelliJ) && isset($netbeans) && isset($purchasedPTO))
             {
-                $objRequestResponse = $clsGameHandler->saveGame($sessionId, $level, $earnings, $score, $pto, $windate, $nespresso,
+                $objRequestResponse = $clsGameHandler->saveGame($sessionId, $level, $earnings, $score, $pto, $windate, $capsule,
                     $activeide, $notepad, $notepadplusplus, $far, $eclipse, $dreamweaver, $mulestudio, $intelliJ, $netbeans, $purchasedPTO);
             }
             else if($eventTarget == 'loadGame' && isset($sessionId))
