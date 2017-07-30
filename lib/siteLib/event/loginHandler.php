@@ -179,12 +179,12 @@ class loginHandler extends databaseHandler
                         <body>
                             <div style="background-color: #303033; width: 1000px; height: 107px;">
                                 <div style="width: 100%; height: 30px; text-align: left; background-color: #950740; float: left; margin-top: 77px;"></div>
-                                <div style="float: left; margin-top: -100px; margin-left: 291px;"><a href="http://odinary.net/"><img src="http://odinary.net/media/site/logo2.png" style="height: 100px; "></a></div>
+                                <div style="float: left; margin-top: -100px; margin-left: 291px;"><a href="http://odinary.net/"><img src="http://odinary.net/media/site/logo2.png" height="100px"></a></div>
                             </div>
                             <div style="margin-top: -20px; background-color: #1A1A1D; width: 1000px; height: 600px; color: #FFFFFF;">
                                 <p style="margin-bottom: 25px; margin-left: 300px; padding-top: 50px; font-size: 20px; font-weight: bold;">Hello '.$username.',</p>
                                 <p style="margin-left: 325px; padding-top: 25px;">Please visit the link below to verify your recently created account.</p>
-                                <p style="margin-left: 350px;"><a href="http://odinary.net/lib/siteLib/verifyEmail.php?emailAddress=' . $emailAddress . '&verificationCode=' . $verificationCode . '" style="color: #FFFFFF">Verify here</a></p>
+                                <p style="margin-left: 350px;"><a href="http://odinary.net/page/verifyEmail?emailAddress=' . $emailAddress . '&verificationCode=' . $verificationCode . '" style="color: #FFFFFF">Verify here</a></p>
                                 <p style="margin-left: 300px; margin-top: 75px;">Sincerely,</p>
                                 <p style="margin-left: 300px; font-weight: bold;">Odinary.net</p>
                             </div>
