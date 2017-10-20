@@ -74,6 +74,13 @@
                 $objRequestResponse = $clsGameHandler->submitLevelStats($levelCode, $levelTiming, $playerEarnings, $playerPTO, $playerIDE);
             }
         }
+        else if($eventTarget == 'dotaGameDetails')
+        {
+            require 'dotaAPIHandler.php';
+
+            $objRequestResponse = $clsDotaAPIHandler->getMatches();
+        }
+
     }
 
     echo json_encode($objRequestResponse);

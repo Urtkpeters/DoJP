@@ -1,0 +1,31 @@
+.dotaLandingPage
+{
+    margin-top: 130px;
+    width: 100%;
+}
+
+.statsShell
+{
+    width: 600px;
+    height: 300px;
+    margin: 0 auto 0 auto;
+    background-color: #303033;
+    padding: 10px;
+}
+
+.infoCell
+{
+    display: inline;
+}
+
+.titleCell
+{
+    width: 150px;
+    float: left;
+}
+
+.dataCell
+{
+    width: 100px;
+    float: left;
+}
